@@ -17,7 +17,7 @@ public class Recipe
     private String description;
     private int servingAmt;
     private int maxWidth = 40;
-    private ArrayList<String> comments;
+    private ArrayList<Comment> comments;
     
 
     /**
@@ -29,6 +29,26 @@ public class Recipe
         this.recipeAuthor = recipeAuthor;
         this.description = description;
         this.servingAmt = servingAmt;
+    }
+    
+    public ArrayList<Comment> getComments()
+    {
+        return comments;
+    }
+    
+    public ArrayList<RecipeIngredient> getIngredients()
+    {
+        return recipeIngredients;
+    }
+    
+    public ArrayList<RecipeStep> getSteps()
+    {
+        return recipeSteps;
+    }
+    
+    public String getAuthor()
+    {
+        return recipeAuthor;
     }
     
     public String getName()
@@ -44,7 +64,7 @@ public class Recipe
         printSteps();
     }
     
-    public void printDescription(int servingAmt, String description)
+    public void printDescription(int servingAmt)
     {
         AutoWrapper.wrapText(description, maxWidth);
         System.out.println("Recipe serves " + servingAmt + " people.");
@@ -83,5 +103,17 @@ public class Recipe
     {
         recipeSteps.add(new RecipeStep(step));
         recipeCounter++;
+    }
+    
+    public void printComments()
+    {
+        for(Comment comment : comments)
+        {
+            System.out.println("Thoughts on this recipe: "
+            + "\n" +
+            comment.getTimePosted() + "\n" +
+            comment.getAuthor() + "\n" +
+            comment.getComment());
+        }
     }
 }

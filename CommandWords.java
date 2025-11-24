@@ -27,6 +27,7 @@ public class CommandWords
         validCommands.put("favorite", CommandWord.FAVORITE);
         validCommands.put("comment", CommandWord.COMMENT);
         validCommands.put("view", CommandWord.VIEW);
+        validCommands.put("exit", CommandWord.EXIT);
         validCommands.put("create", CommandWord.CREATE);
     }
 

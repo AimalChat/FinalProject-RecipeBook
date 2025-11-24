@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class RecipeBook
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Recipe> recipes;
+    private ArrayList<Recipe> recipes = new ArrayList<>();
     private String name;
     private Parser parser;
 
@@ -20,6 +20,9 @@ public class RecipeBook
     public RecipeBook(String name)
     {
         this.name = name;
+        recipes.add(new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.",
+        4));
+        parser = new Parser();
         printWelcome();
         
         boolean finished = false;
@@ -27,9 +30,9 @@ public class RecipeBook
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+        
+        System.out.println("See you next time! :D");
     }
-    
-    
     
     /**
      * Given a command, process (that is: execute) the command.
@@ -44,26 +47,39 @@ public class RecipeBook
 
         switch (commandWord) {
             case SELECT -> select(command);
+            case EXIT -> wantToQuit = exit(command);
             default -> System.out.println("Invalid Command");
         }
         return wantToQuit;
+    }
+    
+    private boolean exit(Command command)
+    {
+        return true;
     }
     
     public void printWelcome()
     {
         HashMap<String, Recipe> listOfRecipes = new HashMap<>();
         System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
-        for(Recipe recipe : recipes)
-        {
-            int index = 0;
-            listOfRecipes.put(String.valueOf(index), recipe);
-            index++;
-        }
+        if(!recipes.isEmpty()){
+            for(Recipe recipe : recipes)
+            {
+                int index = 0;
+                listOfRecipes.put(String.valueOf(index), recipe);
+                index++;
+            }
         
-        for(String index : listOfRecipes.keySet())
-        {
-            System.out.println(index + "." + listOfRecipes.get(index).getName());
+            for(String index : listOfRecipes.keySet())
+            {
+                System.out.println((index + 1) + "." + listOfRecipes.get(index).getName());
+            }
         }
+    }
+    
+    public void addRecipe(Recipe recipe)
+    {
+        recipes.add(recipe);
     }
 
     /**
