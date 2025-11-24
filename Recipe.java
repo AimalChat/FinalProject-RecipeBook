@@ -12,24 +12,29 @@ public class Recipe
     private String recipeName;
     private String recipeAuthor;
     private int recipeCounter = 0;
-    private ArrayList<String> recipeSteps;
-    private ArrayList<String> recipeIngredients;
+    private ArrayList<RecipeStep> recipeSteps;
+    private ArrayList<RecipeIngredient> recipeIngredients;
     private String description;
     private int servingAmt;
+    private int maxWidth = 40;
+    private ArrayList<String> comments;
     
 
     /**
      * Constructor for objects of class Recipe
     */
-    public Recipe(String recipeName, String recipeAuthor, String description, int servingAmt,ArrayList<String> recipeSteps,ArrayList<String> recipeIngredients)
+    public Recipe(String recipeName, String recipeAuthor, String description, int servingAmt)
     {
         this.recipeName = recipeName;
         this.recipeAuthor = recipeAuthor;
         this.description = description;
         this.servingAmt = servingAmt;
-        this.recipeSteps = recipeSteps;
-        this.recipeIngredients = recipeIngredients;
     }
+    
+    public String getName()
+    {
+        return recipeName;
+    }    
     
     public void printRecipeDetails()
     {
@@ -41,22 +46,23 @@ public class Recipe
     
     public void printDescription(int servingAmt, String description)
     {
-        
+        AutoWrapper.wrapText(description, maxWidth);
+        System.out.println("Recipe serves " + servingAmt + " people.");
     }
     
     public void printIngredientsList()
     {
-        for(String ingredient : recipeIngredients)
+        for(RecipeIngredient ingredient : recipeIngredients)
         {
-            System.out.println(ingredient);
+            System.out.println(ingredient.getRecipeIngredient());
         }
     }
     
-    public void addIngredients(String ingredient, int measurement)
+    public void addIngredients(int ammount, String measurement, String ingredient)
     {
-        if(measurement > 0)
+        if(ammount > 0)
         {
-            recipeIngredients.add(measurement + ingredient);
+            recipeIngredients.add(new RecipeIngredient(ammount, measurement, ingredient));
         }else
         {
             System.out.println("invalid value for mesurements detected." + 
@@ -67,7 +73,7 @@ public class Recipe
     
     public void printSteps()
     {
-        for(String step : recipeSteps)
+        for(RecipeStep step : recipeSteps)
         {
             System.out.println(step);
         }
@@ -75,7 +81,7 @@ public class Recipe
     
     public void addRecipeStep(String step)
     {
-        recipeSteps.add(recipeCounter + step);
+        recipeSteps.add(new RecipeStep(step));
         recipeCounter++;
     }
 }

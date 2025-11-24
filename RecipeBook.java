@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Write a description of class RecipeBook here.
@@ -11,6 +12,7 @@ public class RecipeBook
     // instance variables - replace the example below with your own
     private ArrayList<Recipe> recipes;
     private String name;
+    private Parser parser;
 
     /**
      * Constructor for objects of class RecipeBook
@@ -18,12 +20,50 @@ public class RecipeBook
     public RecipeBook(String name)
     {
         this.name = name;
-        System.out.print(printTitle());
+        printWelcome();
+        
+        boolean finished = false;
+        while (! finished) {
+            Command command = parser.getCommand();
+            finished = processCommand(command);
+        }
     }
     
-    public String printTitle()
+    
+    
+    /**
+     * Given a command, process (that is: execute) the command.
+     * @param command The command to be processed.
+     * @return true If the command ends the game, false otherwise.
+     */
+    private boolean processCommand(Command command) 
     {
-        return "--- " + name + " 's Recipe Book ---";
+        boolean wantToQuit = false;
+
+        CommandWord commandWord = command.getCommandWord();
+
+        switch (commandWord) {
+            case SELECT -> select(command);
+            default -> System.out.println("Invalid Command");
+        }
+        return wantToQuit;
+    }
+    
+    public void printWelcome()
+    {
+        HashMap<String, Recipe> listOfRecipes = new HashMap<>();
+        System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
+        for(Recipe recipe : recipes)
+        {
+            int index = 0;
+            listOfRecipes.put(String.valueOf(index), recipe);
+            index++;
+        }
+        
+        for(String index : listOfRecipes.keySet())
+        {
+            System.out.println(index + "." + listOfRecipes.get(index).getName());
+        }
     }
 
     /**
@@ -32,8 +72,25 @@ public class RecipeBook
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void sampleMethod(int y)
+    public void select(Command command)
     {
-        // put your code here
+        if(command.hasSecondWord())
+        {
+            
+        }
     }
+    
+    // public void printSteps()
+    // {
+        // for(String step : recipeSteps)
+        // {
+            // System.out.println(step);
+        // }
+    // }
+    
+    // public void addRecipeStep(String step)
+    // {
+        // recipeSteps.add(recipeCounter + step);
+        // recipeCounter++;
+    // }
 }
