@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class RecipeBook
 {
     // instance variables - replace the example below with your own
+    HashMap<String, Recipe> listOfRecipes = new HashMap<>();
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private String name;
     private Parser parser;
@@ -24,6 +25,7 @@ public class RecipeBook
         4));
         parser = new Parser();
         printWelcome();
+        printMenu();
         
         boolean finished = false;
         while (! finished) {
@@ -58,23 +60,27 @@ public class RecipeBook
         return true;
     }
     
-    public void printWelcome()
+    public void printMenu()
     {
-        HashMap<String, Recipe> listOfRecipes = new HashMap<>();
-        System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
         if(!recipes.isEmpty()){
             for(Recipe recipe : recipes)
             {
-                int index = 0;
+                int index = 1;
                 listOfRecipes.put(String.valueOf(index), recipe);
                 index++;
             }
         
             for(String index : listOfRecipes.keySet())
             {
-                System.out.println((index + 1) + "." + listOfRecipes.get(index).getName());
+                System.out.println((index) + "." + listOfRecipes.get(index).getName());
             }
         }
+    }
+    
+    public void printWelcome()
+    {
+        System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
+        System.out.println("New Features" + "\n" + "IMP." + "\n");
     }
     
     public void addRecipe(Recipe recipe)
@@ -90,9 +96,26 @@ public class RecipeBook
      */
     public void select(Command command)
     {
-        if(command.hasSecondWord())
+        if(!command.hasSecondWord())
         {
-            
+            System.out.println("Please select a valid option.");
+            return;
+        }
+        
+        String selection = command.getSecondWord();
+        boolean selected = false;
+        for(String index : listOfRecipes.keySet())
+        {
+            if(index.equals(selection))
+            {
+                listOfRecipes.get(index).printDescription();
+                selected = true;
+                break;
+            }
+        }
+        if(!selected)
+        {
+            System.out.println("Invalid index, please enter a valid number to select.");
         }
     }
     

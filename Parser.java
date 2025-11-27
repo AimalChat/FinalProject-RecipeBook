@@ -31,7 +31,6 @@ public class Parser
         String inputLine;
         String word1 = null;
         String word2 = null;
-        String word3 = null;
 
         // print prompt
         System.out.print("> ");     

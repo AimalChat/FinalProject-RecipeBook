@@ -25,6 +25,9 @@ public class Recipe
     */
     public Recipe(String recipeName, String recipeAuthor, String description, int servingAmt)
     {
+        recipeSteps = new ArrayList<>();
+        recipeIngredients = new ArrayList<>();
+        comments = new ArrayList<>();
         this.recipeName = recipeName;
         this.recipeAuthor = recipeAuthor;
         this.description = description;
@@ -77,7 +80,7 @@ public class Recipe
         printSteps();
     }
     
-    public void printDescription(int servingAmt)
+    public void printDescription()
     {
         AutoWrapper.wrapText(description, maxWidth);
         System.out.println("Recipe serves " + servingAmt + " people.");
@@ -112,9 +115,9 @@ public class Recipe
         }
     }
     
-    public void addRecipeStep(String step)
+    public void addRecipeStep(RecipeStep step)
     {
-        recipeSteps.add(new RecipeStep(step));
+        recipeSteps.add(step);
         recipeCounter++;
     }
     

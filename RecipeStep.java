@@ -10,6 +10,7 @@ public class RecipeStep
 {
     // instance variables - replace the example below with your own
     private ArrayList<String> recipeSteps;
+    private String step;
     private int recipeCounter = 0;
 
     /**
@@ -17,8 +18,13 @@ public class RecipeStep
      */
     public RecipeStep(String step)
     {
+        recipeSteps = new ArrayList<>();
+        this.step = step;
         recipeSteps.add(step);
     }
 
-    
+    public String getStep()
+    {
+        return step;
+    }
 }
