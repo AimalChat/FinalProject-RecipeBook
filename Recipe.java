@@ -83,11 +83,14 @@ public class Recipe
     public void printDescription()
     {
         AutoWrapper.wrapText(description, maxWidth);
+        
         System.out.println("Recipe serves " + servingAmt + " people.");
     }
     
     public void printIngredientsList()
     {
+        System.out.println("--Ingredient List--" + 
+        "\n");
         for(RecipeIngredient ingredient : recipeIngredients)
         {
             System.out.println(ingredient.getRecipeIngredient());
@@ -111,7 +114,7 @@ public class Recipe
     {
         for(RecipeStep step : recipeSteps)
         {
-            System.out.println(step);
+            System.out.println(step.getStep());
         }
     }
     

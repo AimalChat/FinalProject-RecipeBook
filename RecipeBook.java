@@ -10,10 +10,11 @@ import java.util.HashMap;
 public class RecipeBook
 {
     // instance variables - replace the example below with your own
-    HashMap<String, Recipe> listOfRecipes = new HashMap<>();
+    private HashMap<String, Recipe> listOfRecipes = new HashMap<>();
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private String name;
     private Parser parser;
+    private Recipe currentRecipe = null;
 
     /**
      * Constructor for objects of class RecipeBook
@@ -35,6 +36,11 @@ public class RecipeBook
         
         System.out.println("See you next time! :D");
     }
+    
+    // public boolean getState()
+    // {
+        // switch(
+    // }
     
     /**
      * Given a command, process (that is: execute) the command.
@@ -108,7 +114,8 @@ public class RecipeBook
         {
             if(index.equals(selection))
             {
-                listOfRecipes.get(index).printDescription();
+                listOfRecipes.get(index).printRecipeDetails();
+                currentRecipe = listOfRecipes.get(index);
                 selected = true;
                 break;
             }
