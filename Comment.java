@@ -12,15 +12,21 @@ public class Comment
     private String author;
     private String comment;
     private LocalDateTime timePosted;
-
+    private int rating;
     /**
      * Constructor for objects of class Comment
      */
-    public Comment(String author, String comment)
+    public Comment(String author, String comment, int rating)
     {
         this.author = author;
         this.comment = comment;
+        this.rating = rating;
         timePosted = LocalDateTime.now();
+    }
+    
+    public int getRating()
+    {
+        return rating;
     }
     
     public LocalDateTime getTimePosted()

@@ -18,7 +18,7 @@ public class Recipe
     private int servingAmt;
     private int maxWidth = 40;
     private ArrayList<Comment> comments;
-    
+    private long averageRating;
 
     /**
      * Constructor for objects of class Recipe
@@ -29,6 +29,19 @@ public class Recipe
         this.recipeAuthor = recipeAuthor;
         this.description = description;
         this.servingAmt = servingAmt;
+    }
+    
+    public long getAverageRating()
+    {
+        long average = 0;
+        int counter = 0;
+        for(Comment comment : comments)
+        {
+            average += comment.getRating();
+            counter++;
+        }
+        
+        return (average/counter);
     }
     
     public ArrayList<Comment> getComments()
