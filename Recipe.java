@@ -11,14 +11,14 @@ public class Recipe
     // instance variables - replace the example below with your own
     private String recipeName;
     private String recipeAuthor;
-    private int recipeCounter = 0;
+    private int recipeStepCounter = 0;
     private ArrayList<RecipeStep> recipeSteps;
     private ArrayList<RecipeIngredient> recipeIngredients;
     private String description;
-    private int servingAmt;
+    private double servingAmt;
     private int maxWidth = 40;
     private ArrayList<Comment> comments;
-    private long averageRating;
+    private double averageRating;
 
     /**
      * Constructor for objects of class Recipe
@@ -34,9 +34,20 @@ public class Recipe
         this.servingAmt = servingAmt;
     }
     
-    public long getAverageRating()
+    public ArrayList<RecipeIngredient> getConvertedIngredients(double desiredServings)
     {
-        long average = 0;
+        ArrayList<RecipeIngredient> convertedIngredients = new ArrayList<>();
+        for(RecipeIngredient ingredient : recipeIngredients){
+            double newAmount = ingredient.getAmount() * (desiredServings / servingAmt);
+            RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getMeasurement(), ingredient.getIngredient());
+            convertedIngredients.add(convertedIngredient);
+        }
+        return convertedIngredients;
+    }
+    
+    public double getAverageRating()
+    {
+        double average = 0;
         int counter = 0;
         for(Comment comment : comments)
         {
@@ -89,39 +100,42 @@ public class Recipe
     
     public void printIngredientsList()
     {
+        int counter = 1;
         System.out.println("--Ingredient List--" + 
         "\n");
         for(RecipeIngredient ingredient : recipeIngredients)
         {
-            System.out.println(ingredient.getRecipeIngredient());
+            System.out.println(counter + ". " + ingredient.getRecipeIngredient());
+            counter++;
         }
     }
     
-    public void addIngredients(int ammount, String measurement, String ingredient)
+    public void addIngredients(double amount, String measurement, String ingredient)
     {
-        if(ammount > 0)
+        if(amount > 0)
         {
-            recipeIngredients.add(new RecipeIngredient(ammount, measurement, ingredient));
+            recipeIngredients.add(new RecipeIngredient(amount, measurement, ingredient));
         }else
         {
             System.out.println("invalid value for mesurements detected." + 
-            "/n"+
+            "\n"+
             "Please enter valid value.");
         }
     }
     
     public void printSteps()
     {
+        int counter = 1;
+        System.out.println("--Recipe Steps--" + "\n");
         for(RecipeStep step : recipeSteps)
         {
-            System.out.println(step.getStep());
+            System.out.println(counter + ". " + step.getStep());
         }
     }
     
     public void addRecipeStep(RecipeStep step)
     {
         recipeSteps.add(step);
-        recipeCounter++;
     }
     
     public void printComments()

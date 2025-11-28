@@ -7,5 +7,5 @@
  */
 public enum RecipeBookState
 {
-    ACTIVE_SELECTION, INACTIVE_SELECTION
+    MENU, RECIPE_VIEW
 }

@@ -10,7 +10,6 @@ public class RecipeStep
 {
     // instance variables - replace the example below with your own
     private String step;
-    private int recipeCounter = 0;
 
     /**
      * Constructor for objects of class RecipeSteps

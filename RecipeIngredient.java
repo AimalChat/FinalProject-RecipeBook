@@ -9,33 +9,34 @@ import java.util.HashMap;
 public class RecipeIngredient
 {
     // instance variables - replace the example below with your own
-    private int ammount;
+    private double amount;
     private String measurement;
     private String ingredient;
-    private HashMap<Integer, String> ingredients;
 
     /**
      * Constructor for objects of class RecipeIngredients
      */
-    public RecipeIngredient(int ammount,String measurement, String ingredient)
+    public RecipeIngredient(double amount,String measurement, String ingredient)
     {
-        if(ammount > 0 && validMeasurement(measurement) == true) 
-        {
-            this.ammount = ammount;
-            this.measurement = measurement;
-            this.ingredient = ingredient;
-        }
-        else if(ammount < 0)
-        {
-            System.out.println("invalid value for ammount detected." + 
-            "\n"+
-            "Please enter valid value.");
-        } 
-        else if(validMeasurement(measurement) == false)
+        if(validMeasurement(measurement) == false)
         {
             System.out.println("invalid string for measurement dectected." +
             "\n" +
             "Please enter valid measurement.");
+            return;
+        }
+        else if(amount < 0)
+        {
+            System.out.println("invalid value for amount detected." + 
+            "\n"+
+            "Please enter valid value.");
+            return;
+        }
+        else if(amount > 0 && validMeasurement(measurement) == true) 
+        {
+            this.amount = amount;
+            this.measurement = measurement;
+            this.ingredient = ingredient;
         }
     }
     
@@ -72,7 +73,7 @@ public class RecipeIngredient
     
     public String getRecipeIngredient()
     {
-        return ammount + " " + measurement + " " + ingredient;
+        return amount + " " + measurement + " " + ingredient;
     }
     
     public String getIngredient()
@@ -85,8 +86,8 @@ public class RecipeIngredient
         return measurement;
     }
 
-    public int getAmmount()
+    public double getAmount()
     {
-        return ammount;
+        return amount;
     }
 }
