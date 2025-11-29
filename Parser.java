@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Write a description of class Parser here.
@@ -35,7 +36,7 @@ public class Parser
         // print prompt
         System.out.print("> ");     
 
-        inputLine = reader.nextLine();
+        inputLine = reader.nextLine().trim().toLowerCase();
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
@@ -48,6 +49,31 @@ public class Parser
         }
 
         return new Command(commands.getCommandWord(word1), word2);
+    }
+    
+    public String[] getComment()
+    {
+        // The full input line.
+        String inputLine;
+        int rating = 0;
+        // print prompt
+        System.out.print("> ");     
+
+        inputLine = reader.nextLine().trim().toLowerCase();
+        String[] ratingAndComment = inputLine.split(",");
+        
+        return ratingAndComment;
+    }
+    
+    public String getLine()
+    {
+        // The full input line.
+        String inputLine;
+        // print prompt
+        System.out.print("> ");     
+
+        inputLine = reader.nextLine().trim().toLowerCase();
+        return inputLine;
     }
     
     /**

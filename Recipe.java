@@ -18,7 +18,6 @@ public class Recipe
     private double servingAmt;
     private int maxWidth = 40;
     private ArrayList<Comment> comments;
-    private double averageRating;
 
     /**
      * Constructor for objects of class Recipe
@@ -32,6 +31,14 @@ public class Recipe
         this.recipeAuthor = recipeAuthor;
         this.description = description;
         this.servingAmt = servingAmt;
+    }
+    
+    public void printDetails()
+    {
+        System.out.println("Author: " + recipeAuthor + "\n" +
+        "Serves " + servingAmt + " people.\n" +
+        "Description: " + description + "\n" +
+        "Overall Rating: " + getAverageRating());
     }
     
     public ArrayList<RecipeIngredient> getConvertedIngredients(double desiredServings)
@@ -49,6 +56,10 @@ public class Recipe
     {
         double average = 0;
         int counter = 0;
+        if(comments.isEmpty())
+        {
+            return 0;
+        }
         for(Comment comment : comments)
         {
             average += comment.getRating();
@@ -83,7 +94,7 @@ public class Recipe
         return recipeName;
     }    
     
-    public void printRecipeDetails()
+    public void printRecipe()
     {
         System.out.println("--- " + recipeName + " ---" + 
         "\n" + "Author: " + recipeAuthor + "\n");
@@ -93,7 +104,7 @@ public class Recipe
     
     public void printDescription()
     {
-        AutoWrapper.wrapText(description, maxWidth);
+        System.out.println(AutoWrapper.wrapTextByWidth(description, maxWidth));
         
         System.out.println("Recipe serves " + servingAmt + " people.");
     }
@@ -140,13 +151,14 @@ public class Recipe
     
     public void printComments()
     {
+        System.out.println("--Thoughts on this recipe.-- "+ "\n");
         for(Comment comment : comments)
         {
-            System.out.println("Thoughts on this recipe: "
-            + "\n" +
-            comment.getTimePosted() + "\n" +
-            comment.getAuthor() + "\n" +
-            comment.getComment());
+            System.out.println(
+            "Author: " + comment.getAuthor() + " rates this recipe at " 
+            + comment.getRating() + " stars."
+            + "\n" + "Time Posted: " + comment.getTimeString() + "\n" +
+            comment.getComment() + "\n");
         }
     }
 }

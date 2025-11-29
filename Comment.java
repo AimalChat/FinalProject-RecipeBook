@@ -31,8 +31,14 @@ public class Comment
     
     public LocalDateTime getTimePosted()
     {
-        System.out.println(timePosted);
         return timePosted;
+    }
+    
+    public String getTimeString()
+    {
+        String time = (timePosted.getMonth().toString().toLowerCase() + " " + timePosted.getDayOfMonth() + " " + timePosted.getYear() 
+        + ", " + + timePosted.getHour() +":" + timePosted.getMinute());
+        return time;
     }
     
     public String getComment()

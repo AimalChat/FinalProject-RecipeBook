@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * Write a description of class RecipeBook here.
@@ -10,6 +11,7 @@ import java.util.HashMap;
 public class RecipeBook
 {
     // instance variables - replace the example below with your own
+    private int maxWidth = 50;
     private HashMap<String, Recipe> listOfRecipes = new HashMap<>();
     private ArrayList<Recipe> favorites = new ArrayList<>();
     private ArrayList<Recipe> recipes = new ArrayList<>();
@@ -56,33 +58,87 @@ public class RecipeBook
                 case CONVERT -> convert(command);
                 case FAVORITE -> favorite();
                 case COMMENT -> comment();
-                case VIEW -> currentRecipe.printRecipeDetails();
+                case VIEW -> view(command);
                 case CREATE -> create();
-                default -> System.out.println("Invalid Command");
+                case EXIT -> wantToQuit = exit(command);
+                case UNKNOWN -> System.out.println("Invalid Command");
             }
-        }    
+        }
 
         if(currentState == RecipeBookState.MENU){
             switch (commandWord) {
                 //commands for the menu.
                 case SELECT -> select(command);
                 case EXIT -> wantToQuit = exit(command);
-                default -> System.out.println("Invalid Command");
+                case UNKNOWN -> System.out.println("Invalid Command");
             }
-            }
+        }
         return wantToQuit;
     }
-    
+
+    public void view(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("What would you like to view?" +"\n"+
+            "- Comments" + "\n"+
+            "- Steps" + "\n"+
+            "- Ingredients" + "\n"+
+            "- Details" + "\n"+
+            "- Recipe" + "\n");
+            return;
+        }
+        String viewing = command.getSecondWord().trim();
+        switch(viewing)
+        {
+            case "comments" -> currentRecipe.printComments();
+            case "steps" -> currentRecipe.printSteps();
+            case "ingredients" -> currentRecipe.printIngredientsList();
+            case "details" -> currentRecipe.printDetails();
+            case "recipe" -> currentRecipe.printRecipe();
+            default -> System.out.println("What would you like to view?");
+        }
+    }
+
     public void create()
     {
-        
+
     }
-    
+
     public void comment()
     {
-        
+        System.out.println(AutoWrapper.wrapTextByWidth("Please write your comment in this specific format: rating, comment." 
+        + "\n" + "  Note: Rating must be within the range of 1 to 5, inclusive.", maxWidth));
+
+        String[] ratingAndComment = parser.getComment();
+        if(ratingAndComment.length <= 1 || ratingAndComment[1].trim().equals(""))
+        {
+            System.out.println("Comment not found.");
+            return;
+        }
+        else if(ratingAndComment.length >= 1)
+        {
+            ratingAndComment[1] = String.join(",", Arrays.copyOfRange(ratingAndComment, 1, ratingAndComment.length)).trim();
+        }
+        int rating;
+        String comment = ratingAndComment[1];
+
+        try{
+            rating = Integer.parseInt(ratingAndComment[0]);
+        } catch(NumberFormatException e)
+        {
+            System.out.println("First value found is not a number.");
+            return;
+        }
+        if(rating > 5 || rating <= 0)
+        {
+            System.out.println("Invalid rating, out of range");
+            return;
+        } 
+
+        currentRecipe.getComments().add(new Comment(name,comment,rating));
     }
-    
+
     public void favorite()
     {
         if(favorites.contains(currentRecipe))
@@ -94,19 +150,19 @@ public class RecipeBook
             favorites.add(currentRecipe);
         }
     }
-    
+
     public void getFavoritedRecipes()
     {
-        
+
     }
-    
+
     public void convert(Command command)
     {
         double desiredYield;
         if(!command.hasSecondWord())
         {
             System.out.println("Please enter a value that corresponds to"
-            + " the amount of servings you desire.");
+                + " the amount of servings you desire.");
             return;
         }
         try{
@@ -114,8 +170,8 @@ public class RecipeBook
         } catch(NumberFormatException e)
         {
             System.out.println("Not a valid number." +
-            "\n" +
-            "Please enter a valid number");
+                "\n" +
+                "Please enter a valid number");
             return;
         }
         if(desiredYield >= 1)
@@ -127,7 +183,7 @@ public class RecipeBook
             }
         }
     }
-    
+
     public void back()
     {
         currentState = RecipeBookState.MENU;
@@ -178,6 +234,11 @@ public class RecipeBook
         if(!command.hasSecondWord())
         {
             System.out.println("Please select a valid option.");
+            System.out.println("Which recipe would you like to select?" + "\n");
+            for(String index : listOfRecipes.keySet())
+            {
+                System.out.println((index) + "." + listOfRecipes.get(index).getName());
+            }
             return;
         }
 
@@ -189,7 +250,7 @@ public class RecipeBook
                 if(index.equals(selection))
                 {
                     currentState = RecipeBookState.RECIPE_VIEW;
-                    listOfRecipes.get(index).printRecipeDetails();
+                    listOfRecipes.get(index).printRecipe();
                     currentRecipe = listOfRecipes.get(index);
                     selected = true;
                     break;

@@ -9,25 +9,13 @@
  */
 public class AutoWrapper
 {
-    // instance variables - replace the example below with your own
-    
-
-    /**
-     * Constructor for objects of class AutoWrapper
-     */
-    public AutoWrapper()
-    {
-        // initialise instance variables
-        
-    }
-
     /**
      * 
      *
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public static String wrapText(String text, int maxWidth)
+    public static String wrapTextByWidth(String text, int maxWidth)
     {
         String[] words = text.split(" ");
         StringBuilder line = new StringBuilder();
@@ -48,7 +36,6 @@ public class AutoWrapper
         }
         
         wrapped.append(line.toString().trim());
-        System.out.println(wrapped.toString());
         return wrapped.toString();
     }
 }

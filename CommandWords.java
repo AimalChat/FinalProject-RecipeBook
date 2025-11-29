@@ -20,10 +20,12 @@ public class CommandWords
         // initialise instance variables
         validCommands = new HashMap<>();
         
+        
+        validCommands.put("add", CommandWord.ADD);
         validCommands.put("back", CommandWord.BACK);
         validCommands.put("select", CommandWord.SELECT);
         validCommands.put("convert", CommandWord.CONVERT);
-        validCommands.put("to", CommandWord.TO);
+        //validCommands.put("to", CommandWord.TO);
         validCommands.put("favorite", CommandWord.FAVORITE);
         validCommands.put("comment", CommandWord.COMMENT);
         validCommands.put("view", CommandWord.VIEW);
