@@ -7,5 +7,5 @@
  */
 public enum RecipeBookState
 {
-    MENU, RECIPE_VIEW
+    MENU, RECIPE_VIEW, CREATE
 }

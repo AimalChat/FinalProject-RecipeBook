@@ -51,29 +51,59 @@ public class RecipeBook
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
-        if(currentState == RecipeBookState.RECIPE_VIEW){
-            switch (commandWord) {
+        if(currentState == RecipeBookState.RECIPE_VIEW)
+        {
+            switch (commandWord) 
+            {
                 //commands available only when a recipe is selected
                 case BACK -> back();
                 case CONVERT -> convert(command);
                 case FAVORITE -> favorite();
                 case COMMENT -> comment();
                 case VIEW -> view(command);
-                case CREATE -> create();
                 case EXIT -> wantToQuit = exit(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
             }
         }
 
-        if(currentState == RecipeBookState.MENU){
-            switch (commandWord) {
+        if(currentState == RecipeBookState.MENU)
+        {
+            switch (commandWord) 
+            {
                 //commands for the menu.
+                case CREATE -> create();
                 case SELECT -> select(command);
                 case EXIT -> wantToQuit = exit(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
             }
         }
+        
+        if(currentState == RecipeBookState.CREATE)
+        {
+            switch(commandWord)
+            {
+                case ADD -> add(command);
+                case EDIT -> edit(command);
+                case REMOVE -> remove(command);
+                case UNKNOWN -> System.out.println("Invalid Command");
+            }
+        }
         return wantToQuit;
+    }
+    
+    public void remove(Command command)
+    {
+        
+    }
+    
+    public void edit(Command command)
+    {
+        
+    }
+    
+    public void add(Command command)
+    {
+        
     }
 
     public void view(Command command)
@@ -102,7 +132,36 @@ public class RecipeBook
 
     public void create()
     {
-
+        currentState = RecipeBookState.CREATE;
+        currentRecipe = new Recipe(null, name, null, 0);
+        //recipes.add(currentRecipe);
+        System.out.println("--Create Mode--" + "\n" +
+        AutoWrapper.wrapTextByWidth("You are currently in the creation view of your own recipe!" + "\n" +
+        "Before doing much else, it would be best if you were to initialize the description and name of your recipe." + "\n" +
+        "To add an ingredient, a step or a note, please follow this format: " + "\n" +
+        "add ___________", maxWidth));
+        
+        Command command = parser.getCommand();
+        if(!command.hasSecondWord())
+        {
+            System.out.println("What is it you would like to add?" +
+            "\n" + "-Description" +
+            "\n" + "-Name" +
+            "\n" + "-Ingredient" +
+            "\n" + "-Step" +
+            "\n" + "-Note");
+        }
+        
+        String adding = command.getSecondWord();
+        switch(adding)
+        {
+            //IMPORTANT! NOT ACTUALLY CORRECT YET!
+            case "description" -> parser.getLine();
+            case "name" -> parser.getCommand();
+            case "ingredient" -> parser.getLine();
+            case "step" -> parser.getLine();
+            case "note" -> parser.getLine();
+        }
     }
 
     public void comment()

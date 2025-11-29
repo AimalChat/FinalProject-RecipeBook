@@ -25,7 +25,9 @@ public class CommandWords
         validCommands.put("back", CommandWord.BACK);
         validCommands.put("select", CommandWord.SELECT);
         validCommands.put("convert", CommandWord.CONVERT);
-        //validCommands.put("to", CommandWord.TO);
+        validCommands.put("add", CommandWord.ADD);
+        validCommands.put("edit", CommandWord.EDIT);
+        validCommands.put("remove", CommandWord.REMOVE);
         validCommands.put("favorite", CommandWord.FAVORITE);
         validCommands.put("comment", CommandWord.COMMENT);
         validCommands.put("view", CommandWord.VIEW);

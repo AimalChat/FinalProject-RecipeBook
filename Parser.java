@@ -51,6 +51,19 @@ public class Parser
         return new Command(commands.getCommandWord(word1), word2);
     }
     
+    public String[] getIngredient()
+    {
+        // The full input line.
+        String inputLine;
+        
+        System.out.print("> ");
+        
+        inputLine = reader.nextLine().trim().toLowerCase();
+        String[] ingredient = inputLine.split(",");
+        
+        return ingredient;
+    }
+    
     public String[] getComment()
     {
         // The full input line.
