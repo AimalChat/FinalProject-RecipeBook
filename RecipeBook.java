@@ -63,6 +63,7 @@ public class RecipeBook
                 case VIEW -> view(command);
                 case EXIT -> wantToQuit = exit(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
+                case HELP -> help();
             }
         }
 
@@ -75,6 +76,7 @@ public class RecipeBook
                 case SELECT -> select(command);
                 case EXIT -> wantToQuit = exit(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
+                case HELP -> help();
             }
         }
         
@@ -86,9 +88,38 @@ public class RecipeBook
                 case EDIT -> edit(command);
                 case REMOVE -> remove(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
+                case HELP -> help();
             }
         }
         return wantToQuit;
+    }
+    
+    public void help(){
+        if(currentState == RecipeBookState.RECIPE_VIEW){
+            System.out.println("Back: return to the menu.");
+            System.out.println("Convert: shows the amount of ingredients needed for a"+
+            "\n" + "certain amount of people that the user imputs in.");
+            System.out.println("Favourite: set the recipe you're currently on inside"+
+            "\n"+ "the favourite list, or remove it if it is already there.");
+            System.out.println("Comment: add a coment and rating.");
+            System.out.println("View: allow you to see various details of the recipe.");
+            System.out.println("Exit: exit the recipe book and save the changes"+
+            "\n"+ "inside an object.");
+            System.out.println("Help: shows all possible commands that you can use.");
+        }
+        if(currentState == RecipeBookState.MENU){
+            System.out.println("Create: create a new recipe.");
+            System.out.println("Select: view inside a recipe of your choice.");
+            System.out.println("Exit: exit the recipe book and save the changes"+
+            "\n"+ "inside an object.");
+            System.out.println("Help: shows all possible commands that you can use.");
+        }
+        if(currentState == RecipeBookState.CREATE){
+            System.out.println("Add: add something to the recipe if it's available.");
+            System.out.println("Edit: modify something inside the recipe.");
+            System.out.println("Remove: remove something from the recipe.");
+            System.out.println("Help: shows all possible commands that you can use.");
+        }
     }
     
     public void remove(Command command)
