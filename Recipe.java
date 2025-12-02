@@ -76,13 +76,20 @@ public class Recipe
         "Overall Rating: " + getAverageRating());
     }
     
-    public ArrayList<RecipeIngredient> getConvertedIngredients(double desiredServings)
+    public ArrayList<RecipeIngredient> getConvertedIngredients(int desiredServings)
     {
         ArrayList<RecipeIngredient> convertedIngredients = new ArrayList<>();
         for(RecipeIngredient ingredient : recipeIngredients){
             double newAmount = ingredient.getAmount() * (desiredServings / servingAmt);
-            RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getMeasurement(), ingredient.getIngredient());
-            convertedIngredients.add(convertedIngredient);
+            if(ingredient.getMeasurement().equals(null))
+            {
+                RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getIngredient());
+                convertedIngredients.add(convertedIngredient);
+            }else
+            {
+                RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getMeasurement(), ingredient.getIngredient());
+                convertedIngredients.add(convertedIngredient);
+            }
         }
         return convertedIngredients;
     }
@@ -161,7 +168,8 @@ public class Recipe
         if(amount > 0)
         {
             recipeIngredients.add(new RecipeIngredient(amount, measurement, ingredient));
-        }else if(needsMeasurement == false){
+        }else if(needsMeasurement == false)
+        {
             recipeIngredients.add(new RecipeIngredient(amount, ingredient));
         }
         else{
@@ -169,6 +177,15 @@ public class Recipe
             "\n"+
             "Please enter valid value.");
         }
+    }
+    
+    /**
+     * This method is for simplyfying the construction of ingredients in the SourceRecipes!
+     * Not a replacement for the one above.
+     */
+    public void addIngredient(RecipeIngredient ingredient)
+    {
+        recipeIngredients.add(ingredient);
     }
     
     public void printSteps()

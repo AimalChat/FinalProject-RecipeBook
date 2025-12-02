@@ -59,6 +59,11 @@ public class RecipeIngredient
         }
     }
     
+    public RecipeIngredient()
+    {
+        
+    }
+    
     public void setMeasurement(String measurement)
     {
         if(validMeasurement(measurement) == true)
@@ -72,7 +77,7 @@ public class RecipeIngredient
         this.ingredient = ingredient;
     }
     
-    public void setAmmount(double ammount)
+    public void setAmount(double ammount)
     {
         this.amount = amount;
     }
@@ -109,6 +114,11 @@ public class RecipeIngredient
     }
     
     public String getRecipeIngredient()
+    {
+        return amount + " " + ingredient;
+    }
+    
+    public String getRegRecipeIngredient()
     {
         return amount + " " + measurement + " " + ingredient;
     }
