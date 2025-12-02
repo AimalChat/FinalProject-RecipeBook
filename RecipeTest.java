@@ -41,32 +41,19 @@ public class RecipeTest
     }
 
     @Test
-    public void TestCommentRating()
+    public void testCommentRating()
     {
-        Recipe recipe2 = new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.", 4);
-        Comment comment1 = new Comment("Alex", "its bad", 1);
-        Comment comment2 = new Comment("Alex", "its good", 5);
-        Comment comment3 = new Comment("Alex", "its good", 5);
-        RecipeBook recipeBo1 = new RecipeBook("Alex");
-        recipeBo1.comment();
-        recipeBo1.comment();
-        CommandWords commandW1 = new CommandWords();
-        assertEquals(true, commandW1.isCommand("SELECT, 1"));
-        assertEquals(true, commandW1.getCommandWord("select"));
-        assertEquals(true, CommandWord.valueOf("SELECT"));
-        CommandWords commandW2 = new CommandWords();
-        assertEquals(true, CommandWord.values());
-        CommandWord sELECT1 = CommandWord.valueOf("SELECT");
-        assertEquals(true, sELECT1);
-        Command command1 = new Command(sELECT1, "1");
-        recipeBo1.select(command1);
-        recipeBo1.comment();
-        recipeBo1.comment();
-        recipeBo1.comment();
-        CommandWord vIEW1 = CommandWord.valueOf("VIEW");
-        assertEquals(true, vIEW1);
-        Command command2 = new Command(vIEW1, "details");
-        recipeBo1.view(command2);
+        Recipe recipe1 = new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.", 4);
+        Comment comment1 = new Comment("Alex", "it's bad", 1);
+        Comment comment2 = new Comment("Alex", "it's good", 5);
+        Comment comment3 = new Comment("Alex", "it's good", 5);
+        recipe1.addComment(comment1);
+        recipe1.addComment(comment2);
+        recipe1.addComment(comment3);
+        recipe1.printDetails();
+        assertEquals(3.7, recipe1.getAverageRating(), 0.1);
     }
 }
+
+
 
