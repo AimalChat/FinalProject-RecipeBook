@@ -305,8 +305,8 @@ public class RecipeBook
         }
         if(desiredYield >= 1)
         {
-            System.out.println("--Ingredient List for " + (int) desiredYield + " people.--");
-            for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients(desiredYield))
+            System.out.println("--Ingredient List for " + desiredYield + " people.--");
+            for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients((int) desiredYield))
             {
                 System.out.println(ingredient.getRecipeIngredient());
             }
