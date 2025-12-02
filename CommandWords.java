@@ -33,6 +33,7 @@ public class CommandWords
         validCommands.put("view", CommandWord.VIEW);
         validCommands.put("exit", CommandWord.EXIT);
         validCommands.put("create", CommandWord.CREATE);
+        validCommands.put("help", CommandWord.HELP);
     }
 
     /**

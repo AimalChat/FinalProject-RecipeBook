@@ -44,7 +44,7 @@ public class RecipeIngredient
      */
     public RecipeIngredient(double amount, String ingredient)
     {
-        if(amount < 0)
+        if(amount <= 0)
         {
             System.out.println("invalid value for amount detected." + 
             "\n"+
@@ -54,7 +54,6 @@ public class RecipeIngredient
         else if(amount > 0) 
         {
             this.amount = amount;
-            this.measurement = measurement;
             this.ingredient = ingredient;
         }
     }    
