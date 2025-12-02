@@ -180,7 +180,9 @@ public class RecipeBook
             "\n" + "-Name" +
             "\n" + "-Ingredient" +
             "\n" + "-Step" +
-            "\n" + "-Note");
+            "\n" + "-Note" +
+            "\n" + "-Hot, cold or normal temperature" +
+            "\n" + "-Bake/Cook/Chill time");
         }
         
         String adding = command.getSecondWord();
