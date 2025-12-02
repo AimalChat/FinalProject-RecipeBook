@@ -34,6 +34,7 @@ public class CommandWords
         validCommands.put("exit", CommandWord.EXIT);
         validCommands.put("create", CommandWord.CREATE);
         validCommands.put("help", CommandWord.HELP);
+        validCommands.put("favourites", CommandWord.FAVOURITES);
     }
 
     /**
