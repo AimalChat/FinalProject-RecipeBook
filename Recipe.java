@@ -16,7 +16,7 @@ public class Recipe
     private ArrayList<RecipeIngredient> recipeIngredients;
     private String description;
     private double servingAmt;
-    private int maxWidth = 40;
+    protected int maxWidth = 40;
     private ArrayList<Comment> comments;
 
     /**
@@ -31,6 +31,11 @@ public class Recipe
         this.recipeAuthor = recipeAuthor;
         this.description = description;
         this.servingAmt = servingAmt;
+    }
+    
+    public void addComment(Comment comment)
+    {
+        comments.add(comment);
     }
     
     public void printDetails()

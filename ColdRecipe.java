@@ -24,9 +24,20 @@ public class ColdRecipe extends Recipe
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void sampleMethod(int y)
+    public void setChillTime(int chillTime)
     {
-        // put your code here
-        
+        if(chillTime < 0)
+        {
+            return;
+        }
+        else
+        {
+            this.chillTime = chillTime;
+        }
+    }
+    
+    public int getChillTime()
+    {
+        return chillTime;
     }
 }
