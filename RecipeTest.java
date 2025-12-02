@@ -51,7 +51,7 @@ public class RecipeTest
         recipe1.addComment(comment2);
         recipe1.addComment(comment3);
         recipe1.printDetails();
-        assertEquals(3.7, recipe1.getAverageRating(), 0.1);
+        assertEquals("3.7", recipe1.getAverageRating(), "0.1");
     }
 }
 

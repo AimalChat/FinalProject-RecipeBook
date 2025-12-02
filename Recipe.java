@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 /**
  * Write a description of class Recipe here.
@@ -9,13 +10,14 @@ import java.util.ArrayList;
 public class Recipe
 {
     // instance variables - replace the example below with your own
+    private DecimalFormat formatForRating = new DecimalFormat("#.#");
     private String recipeName;
     private String recipeAuthor;
     private int recipeStepCounter = 0;
     private ArrayList<RecipeStep> recipeSteps;
     private ArrayList<RecipeIngredient> recipeIngredients;
     private String description;
-    private double servingAmt;
+    private int servingAmt;
     protected int maxWidth = 40;
     private ArrayList<Comment> comments;
 
@@ -41,6 +43,7 @@ public class Recipe
     public void printDetails()
     {
         System.out.println("Author: " + recipeAuthor + "\n" +
+        "Recipe: " + recipeName + "\n" +
         "Serves " + servingAmt + " people.\n" +
         "Description: " + description + "\n" +
         "Overall Rating: " + getAverageRating());
@@ -57,13 +60,13 @@ public class Recipe
         return convertedIngredients;
     }
     
-    public double getAverageRating()
+    public String getAverageRating()
     {
         double average = 0;
         int counter = 0;
         if(comments.isEmpty())
         {
-            return 0;
+            return "0";
         }
         for(Comment comment : comments)
         {
@@ -71,7 +74,7 @@ public class Recipe
             counter++;
         }
         
-        return (average/counter);
+        return formatForRating.format((average/counter));
     }
     
     public ArrayList<Comment> getComments()
@@ -111,7 +114,7 @@ public class Recipe
     {
         System.out.println(AutoWrapper.wrapTextByWidth(description, maxWidth));
         
-        System.out.println("Recipe serves " + servingAmt + " people.");
+        System.out.println("Recipe serves " + (int) servingAmt + " people.");
     }
     
     public void printIngredientsList()
