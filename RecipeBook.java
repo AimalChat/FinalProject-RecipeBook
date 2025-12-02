@@ -14,6 +14,7 @@ public class RecipeBook
     private int maxWidth = 50;
     private HashMap<String, Recipe> listOfRecipes = new HashMap<>();
     private ArrayList<Recipe> favorites = new ArrayList<>();
+    private HashMap<String, Recipe> listOfFavourites = new HashMap<>();
     private ArrayList<Recipe> recipes = new ArrayList<>();
     private String name;
     private Parser parser;
@@ -77,6 +78,18 @@ public class RecipeBook
                 case EXIT -> wantToQuit = exit(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
                 case HELP -> help();
+                case FAVOURITES -> favoritesList();
+            }
+        }
+        
+        if(currentState == RecipeBookState.FAVORITES){
+            switch (commandWord){
+                case CREATE -> create();
+                case SELECT -> select(command);
+                case EXIT -> wantToQuit = exit(command);
+                case UNKNOWN -> System.out.println("Invalid Command");
+                case HELP -> help();
+                case BACK -> back();
             }
         }
         
@@ -100,9 +113,11 @@ public class RecipeBook
             System.out.println("Convert: shows the amount of ingredients needed for a"+
             "\n" + "certain amount of people that the user imputs in.");
             System.out.println("Favourite: set the recipe you're currently on inside"+
-            "\n"+ "the favourite list, or remove it if it is already there.");
+            "\n"+ "the favorites list, or remove it if it is already there.");
             System.out.println("Comment: add a coment and rating.");
             System.out.println("View: allow you to see various details of the recipe.");
+            System.out.println("Favourites: see all of the recipes that you added"+
+            "\n" + "inside the favorites list.");
             System.out.println("Exit: exit the recipe book and save the changes"+
             "\n"+ "inside an object.");
             System.out.println("Help: shows all possible commands that you can use.");
@@ -118,6 +133,14 @@ public class RecipeBook
             System.out.println("Add: add something to the recipe if it's available.");
             System.out.println("Edit: modify something inside the recipe.");
             System.out.println("Remove: remove something from the recipe.");
+            System.out.println("Help: shows all possible commands that you can use.");
+        }
+        if(currentState == RecipeBookState.MENU){
+            System.out.println("Create: create a new recipe.");
+            System.out.println("Select: view inside a recipe of your choice.");
+            System.out.println("Back: return to the menu.");
+            System.out.println("Exit: exit the recipe book and save the changes"+
+            "\n"+ "inside an object.");
             System.out.println("Help: shows all possible commands that you can use.");
         }
     }
@@ -194,6 +217,12 @@ public class RecipeBook
             case "ingredient" -> parser.getLine();
             case "step" -> parser.getLine();
             case "note" -> parser.getLine();
+            case "hot temperature" -> parser.getLine();
+            case "cold temperature" -> parser.getLine();
+            case "normal temperature" -> parser.getLine();
+            case "bake time" -> parser.getLine();
+            case "cook time" -> parser.getLine();
+            case "chill time" -> parser.getLine();
         }
     }
 
@@ -236,16 +265,24 @@ public class RecipeBook
         if(favorites.contains(currentRecipe))
         {
             favorites.remove(currentRecipe);
+            listOfFavourites.remove(currentRecipe);
         }
         else
         {
             favorites.add(currentRecipe);
+            //listOfFavourites.put(currentRecipe);
         }
     }
 
+    public void favoritesList()
+    {
+        currentState = RecipeBookState.FAVORITES;
+        getFavoritedRecipes();
+    }
+    
     public void getFavoritedRecipes()
     {
-
+        
     }
 
     public void convert(Command command)
@@ -298,6 +335,25 @@ public class RecipeBook
             }
 
             for(String index : listOfRecipes.keySet())
+            {
+                System.out.println((index) + "." + listOfRecipes.get(index).getName());
+            }
+        }
+    }
+    
+    public void printFavourites()
+    {
+        if(!recipes.isEmpty()){
+            for(Recipe recipe : favorites)
+            {
+                int index = 1;
+                if(listOfFavourites.get(index) != null){
+                    listOfRecipes.put(String.valueOf(index), recipe);
+                }
+                index++;
+            }
+
+            for(String index : listOfFavourites.keySet())
             {
                 System.out.println((index) + "." + listOfRecipes.get(index).getName());
             }
