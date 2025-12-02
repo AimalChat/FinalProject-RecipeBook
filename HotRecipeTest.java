@@ -52,7 +52,26 @@ public class HotRecipeTest
         assertEquals("ºF", hotRecip1.getTempatureType());
         assertEquals(350, hotRecip1.getHeat());
     }
+
+    @Test
+    public void testBorderForC()
+    {
+        hotRecip1.setCookOrBakeTime(290, "C");
+        assertEquals(290, hotRecip1.getHeat());
+        assertEquals("ºC", hotRecip1.getTempatureType());
+    }
+
+    @Test
+    public void testZeroBorderforC()
+    {
+        hotRecip1.setCookOrBakeTime(0, "C");
+        assertEquals(0, hotRecip1.getHeat());
+        assertEquals("ºC", hotRecip1.getTempatureType());
+        assertEquals(true, hotRecip1.validateHeat(0, "ºC"));
+    }
 }
+
+
 
 
 

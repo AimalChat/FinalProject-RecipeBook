@@ -8,7 +8,7 @@
 public class HotRecipe extends Recipe
 {
     // instance variables - replace the example below with your own
-    private int heat;
+    private int heatTemp;
     private String tempatureType;
 
     /**
@@ -25,30 +25,62 @@ public class HotRecipe extends Recipe
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void setCookOrBakeTime(int heat, String tempatureType)
+    public void setCookOrBakeTime(int heatTemp, String tempatureType)
     {
         switch(tempatureType)
         {
             case "celsius" : 
                 tempatureType = "ºC";
                 this.tempatureType = tempatureType;
-                this.heat = validateHeat(heat, tempatureType);
-                break;
+                if(validateHeat(heatTemp, tempatureType))
+                {
+                    this.heatTemp = heatTemp;
+                    break;
+                }else
+                {
+                    System.out.println("Invalid heat detected.");
+                    break;
+                }
+            
             case "fahrenheit" : 
                 tempatureType = "ºF";
                 this.tempatureType = tempatureType;
-                this.heat = validateHeat(heat, tempatureType);
-                break;
+                if(validateHeat(heatTemp, tempatureType))
+                {
+                    this.heatTemp = heatTemp;
+                    break;
+                }else
+                {
+                    System.out.println("Invalid heat detected.");
+                    break;
+                }
+                
             case "C" :
                 tempatureType = "ºC";
                 this.tempatureType = tempatureType;
-                this.heat = validateHeat(heat, tempatureType);
-                break;
+                if(validateHeat(heatTemp, tempatureType))
+                {
+                    this.heatTemp = heatTemp;
+                    break;
+                }else
+                {
+                    System.out.println("Invalid heat detected.");
+                    break;
+                }
+                
             case "F" :
                 tempatureType = "ºF";
                 this.tempatureType = tempatureType;
-                this.heat = validateHeat(heat, tempatureType);
-                break;
+                if(validateHeat(heatTemp, tempatureType))
+                {
+                    this.heatTemp = heatTemp;
+                    break;
+                }else
+                {
+                    System.out.println("Invalid heat detected.");
+                    break;
+                }
+                
             default :
                 System.out.println("Invalid Tempature Type."
                     + "Must either be in fahrenheit(ºF) Or celsius(ºC).");
@@ -56,31 +88,46 @@ public class HotRecipe extends Recipe
         }
     }
 
-    public int validateHeat(int aHeat, String validTempatureType)
+    public boolean validateHeat(int aHeatTemp, String validTempatureType)
     {
+        boolean valid = true;
         if(validTempatureType.equals("ºC"))
         {
-            if(aHeat > 290)
+            if(aHeatTemp > 290)
             {
                 System.out.println(AutoWrapper.wrapTextByWidth("For safety reasons we cannot allow you to exceed 290ºC. Please input a valid value.", maxWidth));
-                aHeat = 0;
+                //aHeat = 0;
+                valid = false;
+            }else
+            {
+                if(aHeatTemp == 0)
+                {
+                    System.out.println(AutoWrapper.wrapTextByWidth("0 is not really gonna help cook or bake anything, bruv.", maxWidth));
+                }
             }
         }
 
         if(validTempatureType.equals("ºF"))
         {
-            if(aHeat > 550)
+            if(aHeatTemp > 550)
             {
                 System.out.println(AutoWrapper.wrapTextByWidth("For safety reasons we cannot allow you to exceed 550ºF. Please input a valid value.", maxWidth));
-                aHeat = 0;
+                //aHeat = 0;
+                valid = false;
+            }else
+            {
+                if(aHeatTemp == 0)
+                {
+                    System.out.println(AutoWrapper.wrapTextByWidth("0 is not really gonna help cook or bake anything, bruv.", maxWidth));
+                }
             }
         }
-        return aHeat;
+        return valid;
     }
 
     public int getHeat()
     {
-        return heat;
+        return heatTemp;
     }
 
     public String getTempatureType()
