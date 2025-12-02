@@ -39,6 +39,25 @@ public class RecipeIngredient
             this.ingredient = ingredient;
         }
     }
+    /**
+     * Constructor for objects of class RecipeIngredients
+     */
+    public RecipeIngredient(double amount, String ingredient)
+    {
+        if(amount < 0)
+        {
+            System.out.println("invalid value for amount detected." + 
+            "\n"+
+            "Please enter valid value.");
+            return;
+        }
+        else if(amount > 0) 
+        {
+            this.amount = amount;
+            this.measurement = measurement;
+            this.ingredient = ingredient;
+        }
+    }    
     
     public boolean validMeasurement(String aMeasurement)
     {

@@ -126,13 +126,15 @@ public class Recipe
         }
     }
     
-    public void addIngredients(double amount, String measurement, String ingredient)
+    public void addIngredients(double amount, String measurement, String ingredient, boolean needsMeasurement)
     {
         if(amount > 0)
         {
             recipeIngredients.add(new RecipeIngredient(amount, measurement, ingredient));
-        }else
-        {
+        }else if(needsMeasurement == false){
+            recipeIngredients.add(new RecipeIngredient(amount, ingredient));
+        }
+        else{
             System.out.println("invalid value for mesurements detected." + 
             "\n"+
             "Please enter valid value.");
