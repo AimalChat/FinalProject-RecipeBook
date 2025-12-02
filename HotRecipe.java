@@ -8,7 +8,7 @@
 public class HotRecipe extends Recipe
 {
     // instance variables - replace the example below with your own
-    private int heatTime;
+    private int heat;
     private String tempatureType;
 
     /**
@@ -25,47 +25,64 @@ public class HotRecipe extends Recipe
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void setCookOrBakeTime(int heatTime, String tempatureType)
+    public void setCookOrBakeTime(int heat, String tempatureType)
     {
         switch(tempatureType)
         {
-            case "celsius" -> tempatureType = "ºC";
-            case "fahrenheit" -> tempatureType = "ºF";
-            default ->  tempatureType = null;
+            case "celsius" : 
+                tempatureType = "ºC";
+                this.tempatureType = tempatureType;
+                this.heat = validateHeat(heat, tempatureType);
+                break;
+            case "fahrenheit" : 
+                tempatureType = "ºF";
+                this.tempatureType = tempatureType;
+                this.heat = validateHeat(heat, tempatureType);
+                break;
+            case "C" :
+                tempatureType = "ºC";
+                this.tempatureType = tempatureType;
+                this.heat = validateHeat(heat, tempatureType);
+                break;
+            case "F" :
+                tempatureType = "ºF";
+                this.tempatureType = tempatureType;
+                this.heat = validateHeat(heat, tempatureType);
+                break;
+            default :
+                System.out.println("Invalid Tempature Type."
+                    + "Must either be in fahrenheit(ºF) Or celsius(ºC).");
+                break;
         }
-        
-        if(tempatureType == "ºC")
+    }
+
+    public int validateHeat(int aHeat, String validTempatureType)
+    {
+        if(validTempatureType.equals("ºC"))
         {
-            if(heatTime > 290)
+            if(aHeat > 290)
             {
                 System.out.println(AutoWrapper.wrapTextByWidth("For safety reasons we cannot allow you to exceed 290ºC. Please input a valid value.", maxWidth));
-                return;
+                aHeat = 0;
             }
         }
-        else
+
+        if(validTempatureType.equals("ºF"))
         {
-            this.heatTime = heatTime;
-        }
-        
-        if(tempatureType == "ºF")
-        {
-            if(heatTime > 550)
+            if(aHeat > 550)
             {
                 System.out.println(AutoWrapper.wrapTextByWidth("For safety reasons we cannot allow you to exceed 550ºF. Please input a valid value.", maxWidth));
-                return;
+                aHeat = 0;
             }
         }
-        else
-        {
-            this.heatTime = heatTime;
-        }
+        return aHeat;
     }
-    
-    public int getHeatTime()
+
+    public int getHeat()
     {
-        return heatTime;
+        return heat;
     }
-    
+
     public String getTempatureType()
     {
         return tempatureType;

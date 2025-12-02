@@ -44,5 +44,15 @@ public class HotRecipeTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void testValidBakeTime()
+    {
+        hotRecip1.setCookOrBakeTime(350, "F");
+        assertEquals("ºF", hotRecip1.getTempatureType());
+        assertEquals(350, hotRecip1.getHeat());
+    }
 }
+
+
 
