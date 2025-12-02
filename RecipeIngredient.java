@@ -39,6 +39,7 @@ public class RecipeIngredient
             this.ingredient = ingredient;
         }
     }
+    
     /**
      * Constructor for objects of class RecipeIngredients
      */
@@ -56,7 +57,25 @@ public class RecipeIngredient
             this.amount = amount;
             this.ingredient = ingredient;
         }
-    }    
+    }
+    
+    public void setMeasurement(String measurement)
+    {
+        if(validMeasurement(measurement) == true)
+        {
+            this.measurement = measurement;
+        }
+    }
+    
+    public void setIngredient(String ingredient)
+    {
+        this.ingredient = ingredient;
+    }
+    
+    public void setAmmount(double ammount)
+    {
+        this.amount = amount;
+    }
     
     public boolean validMeasurement(String aMeasurement)
     {

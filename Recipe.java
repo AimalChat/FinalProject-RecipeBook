@@ -35,6 +35,33 @@ public class Recipe
         this.servingAmt = servingAmt;
     }
     
+    public Recipe()
+    {
+        recipeSteps = new ArrayList<>();
+        recipeIngredients = new ArrayList<>();
+        comments = new ArrayList<>();
+    }
+    
+    public void setServingAmt(int servingAmt)
+    {
+        this.servingAmt = servingAmt;
+    }
+    
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+    
+    public void setRecipeAuthor(String recipeAuthor)
+    {
+        this.recipeAuthor = recipeAuthor;
+    }
+    
+    public void setRecipeName(String recipeName)
+    {
+        this.recipeName = recipeName;
+    }
+    
     public void addComment(Comment comment)
     {
         comments.add(comment);

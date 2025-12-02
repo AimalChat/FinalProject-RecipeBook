@@ -18,6 +18,11 @@ public class RecipeStep
     {
         this.step = step;
     }
+    
+    public void setStep(String step)
+    {
+        this.step = step;
+    }
 
     public String getStep()
     {
