@@ -18,6 +18,11 @@ public class HotRecipe extends Recipe
     {
         super(recipeName, recipeAuthor, description, servingAmt);
     }
+    
+    public HotRecipe()
+    {
+        
+    }
 
     /**
      * An example of a method - replace this comment with your own
