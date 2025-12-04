@@ -42,6 +42,11 @@ public class Recipe
         comments = new ArrayList<>();
     }
     
+    public int getCommentsSize()
+    {
+        return comments.size();
+    }
+    
     public void setServingAmt(int servingAmt)
     {
         this.servingAmt = servingAmt;
@@ -215,6 +220,4 @@ public class Recipe
             comment.getComment() + "\n");
         }
     }
-    
-    
 }

@@ -125,6 +125,7 @@ public class RecipeBook
             "\n"+ "inside an object.");
             System.out.println("Help: shows all possible commands that you can use.");
         }
+        
         if(currentState == RecipeBookState.MENU){
             System.out.println("Create: create a new recipe.");
             System.out.println("Select: view inside a recipe of your choice.");
@@ -134,12 +135,14 @@ public class RecipeBook
             "\n" + "inside the favorites list.");
             System.out.println("Help: shows all possible commands that you can use.");
         }
+        
         if(currentState == RecipeBookState.CREATE){
             System.out.println("Add: add something to the recipe if it's available.");
             System.out.println("Edit: modify something inside the recipe.");
             System.out.println("Remove: remove something from the recipe.");
             System.out.println("Help: shows all possible commands that you can use.");
         }
+        
         if(currentState == RecipeBookState.FAVORITES){
             System.out.println("Create: create a new recipe.");
             System.out.println("Select: view inside a recipe of your choice.");
@@ -177,7 +180,9 @@ public class RecipeBook
             "- Recipe" + "\n");
             return;
         }
+        
         String viewing = command.getSecondWord().trim();
+        
         switch(viewing)
         {
             case "comments" -> currentRecipe.printComments();
@@ -256,6 +261,7 @@ public class RecipeBook
             System.out.println("First value found is not a number.");
             return;
         }
+        
         if(rating > 5 || rating <= 0)
         {
             System.out.println("Invalid rating, out of range");
@@ -319,6 +325,7 @@ public class RecipeBook
                 + " the amount of servings you desire.");
             return;
         }
+        
         try{
             desiredYield = Double.parseDouble(command.getSecondWord());
         } catch(NumberFormatException e)
@@ -328,6 +335,7 @@ public class RecipeBook
                 "Please enter a valid number");
             return;
         }
+        
         if(desiredYield >= 1)
         {
             System.out.println("--Ingredient List for " + desiredYield + " people.--");
@@ -414,6 +422,7 @@ public class RecipeBook
                     System.out.println((index) + "." + listOfRecipes.get(index).getName());
                 }
             }
+            
             if(currentState == RecipeBookState.FAVORITES){
                 for(String index : listOfFavorites.keySet())
                 {
@@ -437,11 +446,13 @@ public class RecipeBook
                     break;
                 }
             }
+            
             if(!selected)
             {
                 System.out.println("Invalid index, please enter a valid number to select.");
             }
         }
+        
         if(currentState == RecipeBookState.FAVORITES){
             for(String index : listOfFavorites.keySet())
             {
