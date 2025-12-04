@@ -79,7 +79,16 @@ public class RecipeIngredient
     
     public void setAmount(double ammount)
     {
-        this.amount = amount;
+        if(amount <= 0)
+        {
+            System.out.println("invalid value for amount detected." + 
+            "\n"+
+            "Please enter valid value.");
+            return;
+        }
+        else{
+            this.amount = amount;
+        }
     }
     
     public boolean validMeasurement(String aMeasurement)
