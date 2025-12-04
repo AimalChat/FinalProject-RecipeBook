@@ -194,7 +194,7 @@ public class Recipe
         System.out.println("--Recipe Steps--" + "\n");
         for(RecipeStep step : recipeSteps)
         {
-            System.out.println(counter + ". " + step.getStep());
+            System.out.println(counter + ". " + step.getStep() + "\n");
         }
     }
     
@@ -215,4 +215,6 @@ public class Recipe
             comment.getComment() + "\n");
         }
     }
+    
+    
 }

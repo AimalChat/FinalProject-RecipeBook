@@ -20,6 +20,7 @@ public class RecipeBook
     private Parser parser;
     private Recipe currentRecipe = null;
     private RecipeBookState currentState = RecipeBookState.MENU;
+    private SourceRecipes basics = new SourceRecipes();
 
     /**
      * Constructor for objects of class RecipeBook
@@ -29,6 +30,10 @@ public class RecipeBook
         this.name = name;
         recipes.add(new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.",
                 4));
+        for(Recipe recipe : basics.getRecipes())
+        {
+            recipes.add(recipe);
+        }
         parser = new Parser();
         printWelcome();
         printMenu();
