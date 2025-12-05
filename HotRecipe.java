@@ -2,7 +2,7 @@
 /**
  * Write a description of class HotRecipe here.
  *
- * @author (your name)
+ * @author Aimal
  * @version (a version number or a date)
  */
 public class HotRecipe extends Recipe

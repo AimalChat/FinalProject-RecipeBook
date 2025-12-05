@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class RecipeStepTest.
  *
- * @author  (your name)
+ * @author  Aimal
  * @version (a version number or a date)
  */
 public class RecipeStepTest

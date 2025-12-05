@@ -69,9 +69,9 @@ public class SourceRecipes
         recipe1.addIngredient(hotWater);
         
         RecipeIngredient salt = new RecipeIngredient();
-        hotWater.setIngredient("salt");
-        hotWater.setAmount(1/2);
-        hotWater.setMeasurement("teaspoon");
+        salt.setIngredient("salt");
+        salt.setAmount(0.5);
+        salt.setMeasurement("teaspoon");
         recipe1.addIngredient(salt);
         
         RecipeIngredient allPurposeFlour = new RecipeIngredient();
@@ -80,16 +80,16 @@ public class SourceRecipes
         allPurposeFlour.setMeasurement("cups");
         recipe1.addIngredient(allPurposeFlour);
         
-        RecipeIngredient semisweetChocolateChips = new RecipeIngredient();
-        semisweetChocolateChips.setIngredient("semisweet chocolate chips");
-        semisweetChocolateChips.setAmount(2);
-        semisweetChocolateChips.setMeasurement("cups");
-        recipe1.addIngredient(semisweetChocolateChips);
+        RecipeIngredient semiSweetChocolateChips = new RecipeIngredient();
+        semiSweetChocolateChips.setIngredient("semisweet chocolate chips");
+        semiSweetChocolateChips.setAmount(2);
+        semiSweetChocolateChips.setMeasurement("cups");
+        recipe1.addIngredient(semiSweetChocolateChips);
         
         RecipeIngredient choppedWalnuts = new RecipeIngredient();
-        semisweetChocolateChips.setIngredient("chopped walnuts");
-        semisweetChocolateChips.setAmount(1);
-        semisweetChocolateChips.setMeasurement("cup");
+        choppedWalnuts.setIngredient("chopped walnuts");
+        choppedWalnuts.setAmount(1);
+        choppedWalnuts.setMeasurement("cup");
         recipe1.addIngredient(choppedWalnuts);
         
         //Steps

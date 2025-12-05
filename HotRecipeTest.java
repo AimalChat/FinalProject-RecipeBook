@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class HotRecipeTest.
  *
- * @author  (your name)
+ * @author  Alex
  * @version (a version number or a date)
  */
 public class HotRecipeTest

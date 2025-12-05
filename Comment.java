@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 /**
  * Write a description of class Comment here.
  *
- * @author (your name)
+ * @author Aimal
  * @version (a version number or a date)
  */
 public class Comment

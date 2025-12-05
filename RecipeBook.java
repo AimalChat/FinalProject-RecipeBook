@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Write a description of class RecipeBook here.
  *
- * @author (your name)
+ * @author Alex
  * @version (a version number or a date)
  */
 public class RecipeBook
@@ -28,12 +28,12 @@ public class RecipeBook
     public RecipeBook(String name)
     {
         this.name = name;
-        recipes.add(new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.",
-                4));
         for(Recipe recipe : basics.getRecipes())
         {
             recipes.add(recipe);
         }
+        recipes.add(new Recipe("Mac and Cheese", "Aimal Shah", "A simple yet delectable dish.",
+                4));
         parser = new Parser();
         printWelcome();
         printMenu();
@@ -361,16 +361,16 @@ public class RecipeBook
     public void printMenu()
     {
         if(!recipes.isEmpty()){
+            int index = 1;
             for(Recipe recipe : recipes)
             {
-                int index = 1;
                 listOfRecipes.put(String.valueOf(index), recipe);
                 index++;
             }
-
-            for(String index : listOfRecipes.keySet())
+            
+            for(String indexPointer : listOfRecipes.keySet())
             {
-                System.out.println((index) + "." + listOfRecipes.get(index).getName());
+                System.out.println(indexPointer + "." + listOfRecipes.get(indexPointer).getName() + "\n");
             }
         }
     }

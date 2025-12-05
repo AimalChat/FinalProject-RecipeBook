@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 /**
  * Write a description of class Recipe here.
  *
- * @author (your name)
+ * @author Aimal
  * @version (a version number or a date)
  */
 public class Recipe
@@ -40,6 +40,16 @@ public class Recipe
         recipeSteps = new ArrayList<>();
         recipeIngredients = new ArrayList<>();
         comments = new ArrayList<>();
+    }
+    
+    public int getStepsSize()
+    {
+        return recipeSteps.size();
+    }
+    
+    public int getIngredientsSize()
+    {
+        return recipeIngredients.size();
     }
     
     public int getCommentsSize()
@@ -146,6 +156,7 @@ public class Recipe
         System.out.println("--- " + recipeName + " ---" + 
         "\n" + "Author: " + recipeAuthor + "\n");
         printIngredientsList();
+        System.out.println("\n");
         printSteps();
     }
     
@@ -163,8 +174,22 @@ public class Recipe
         "\n");
         for(RecipeIngredient ingredient : recipeIngredients)
         {
-            System.out.println(counter + ". " + ingredient.getRecipeIngredient());
-            counter++;
+            if(ingredient.getMeasurement() == null)
+            {
+                System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRecipeIngredient(),maxWidth));
+                counter++;
+            }else
+            {
+                if( (int) ((Math.abs(ingredient.getAmount()) * 10) % 10) == 0)
+                {
+                    System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getWholeIntRegRecipeIngredient(),maxWidth));
+                    counter++;
+                }else
+                {
+                    System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRegRecipeIngredient(),maxWidth));
+                    counter++;
+                }
+            }
         }
     }
     
@@ -199,7 +224,8 @@ public class Recipe
         System.out.println("--Recipe Steps--" + "\n");
         for(RecipeStep step : recipeSteps)
         {
-            System.out.println(counter + ". " + step.getStep() + "\n");
+            System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(step.getStep(), maxWidth) + "\n");
+            counter++;
         }
     }
     
@@ -217,7 +243,7 @@ public class Recipe
             "Author: " + comment.getAuthor() + " rates this recipe at " 
             + comment.getRating() + " stars."
             + "\n" + "Time Posted: " + comment.getTimeString() + "\n" +
-            comment.getComment() + "\n");
+            AutoWrapper.wrapTextByWidth(comment.getComment(), maxWidth) + "\n");
         }
     }
 }

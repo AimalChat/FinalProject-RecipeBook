@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class RecipeSteps here.
  *
- * @author (your name)
+ * @author Alex
  * @version (a version number or a date)
  */
 public class RecipeStep

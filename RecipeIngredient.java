@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 /**
  * Write a description of class RecipeIngredients here.
  *
- * @author (your name)
+ * @author Alex
  * @version (a version number or a date)
  */
 public class RecipeIngredient
@@ -123,6 +123,11 @@ public class RecipeIngredient
             default -> valid = false;
         }
         return valid;
+    }
+    
+    public String getWholeIntRegRecipeIngredient()
+    {
+        return (int) amount + " " + measurement + " " + ingredient;
     }
     
     public String getRecipeIngredient()

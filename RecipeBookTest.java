@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class RecipeBookTest.
  *
- * @author  (your name)
+ * @author  Aimal
  * @version (a version number or a date)
  */
 public class RecipeBookTest
 {
+    private RecipeBook recipeBo1;
+
     /**
      * Default constructor for test class RecipeBookTest
      */
@@ -28,6 +30,7 @@ public class RecipeBookTest
     @BeforeEach
     public void setUp()
     {
+        recipeBo1 = new RecipeBook("Aimal");
     }
 
     /**
