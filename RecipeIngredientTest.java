@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
  */
 public class RecipeIngredientTest
 {
+    private RecipeIngredient recipeIn1;
+
     /**
      * Default constructor for test class RecipeIngredientTest
      */
@@ -28,6 +30,7 @@ public class RecipeIngredientTest
     @BeforeEach
     public void setUp()
     {
+        recipeIn1 = new RecipeIngredient(0.5, "cups", "flour");
     }
 
     /**
@@ -64,7 +67,37 @@ public class RecipeIngredientTest
     {
         RecipeIngredient recipeIn1 = new RecipeIngredient(0, "ice cubes");
     }
+
+    @Test
+    public void testGetters()
+    {
+        assertEquals(0.5, recipeIn1.getAmount(), 0.1);
+        assertEquals("flour", recipeIn1.getIngredient());
+        assertEquals("cups", recipeIn1.getMeasurement());
+    }
+
+    @Test
+    public void testToStringMethods()
+    {
+        assertEquals("0.5 cups flour", recipeIn1.getRegRecipeIngredient());
+        RecipeIngredient recipeIn2 = new RecipeIngredient(3, "eggs");
+        assertEquals("3 eggs", recipeIn2.getRecipeIngredient());
+    }
+
+    @Test
+    public void testSetters()
+    {
+        recipeIn1.setAmount(0.7);
+        recipeIn1.setIngredient("sugar");
+        recipeIn1.setMeasurement("teaspoons");
+        assertEquals(0.7, recipeIn1.getAmount(), 0.1);
+        assertEquals("sugar", recipeIn1.getIngredient());
+        assertEquals("teaspoons", recipeIn1.getMeasurement());
+    }
 }
+
+
+
 
 
 

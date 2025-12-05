@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
  */
 public class CommentTest
 {
+    private Comment comment1;
+
     /**
      * Default constructor for test class CommentTest
      */
@@ -28,6 +30,7 @@ public class CommentTest
     @BeforeEach
     public void setUp()
     {
+        comment1 = new Comment("Willy", "epic", 3);
     }
 
     /**
@@ -45,5 +48,14 @@ public class CommentTest
     {
         Comment comment1 = new Comment("Alex", "its good", 5);
     }
+
+    @Test
+    public void testGetters()
+    {
+        assertEquals("Willy", comment1.getAuthor());
+        assertEquals("epic", comment1.getComment());
+        assertEquals(3, comment1.getRating());
+    }
 }
+
 

@@ -113,6 +113,7 @@ public class RecipeBook
     }
     
     public void help(){
+        
         if(currentState == RecipeBookState.RECIPE_VIEW){
             System.out.println("Back: return to the menu.");
             System.out.println("Convert: shows the amount of ingredients needed for a"+

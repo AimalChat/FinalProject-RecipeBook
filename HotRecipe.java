@@ -31,15 +31,15 @@ public class HotRecipe extends Recipe
      * @return    the sum of x and y
      */
     public void setCookOrBakeTime(int heatTemp, String tempatureType)
-    {
+    {   
         switch(tempatureType)
         {
             case "celsius" : 
                 tempatureType = "ºC";
-                this.tempatureType = tempatureType;
                 if(validateHeat(heatTemp, tempatureType))
                 {
                     this.heatTemp = heatTemp;
+                    this.tempatureType = tempatureType;
                     break;
                 }else
                 {
@@ -49,10 +49,10 @@ public class HotRecipe extends Recipe
             
             case "fahrenheit" : 
                 tempatureType = "ºF";
-                this.tempatureType = tempatureType;
                 if(validateHeat(heatTemp, tempatureType))
                 {
                     this.heatTemp = heatTemp;
+                    this.tempatureType = tempatureType;
                     break;
                 }else
                 {
@@ -62,10 +62,10 @@ public class HotRecipe extends Recipe
                 
             case "C" :
                 tempatureType = "ºC";
-                this.tempatureType = tempatureType;
                 if(validateHeat(heatTemp, tempatureType))
                 {
                     this.heatTemp = heatTemp;
+                    this.tempatureType = tempatureType;
                     break;
                 }else
                 {
@@ -75,10 +75,10 @@ public class HotRecipe extends Recipe
                 
             case "F" :
                 tempatureType = "ºF";
-                this.tempatureType = tempatureType;
                 if(validateHeat(heatTemp, tempatureType))
                 {
                     this.heatTemp = heatTemp;
+                    this.tempatureType = tempatureType;
                     break;
                 }else
                 {
@@ -105,9 +105,10 @@ public class HotRecipe extends Recipe
                 valid = false;
             }else
             {
-                if(aHeatTemp == 0)
+                if(aHeatTemp <= 0)
                 {
-                    System.out.println(AutoWrapper.wrapTextByWidth("0 is not really gonna help cook or bake anything, bruv.", maxWidth));
+                    System.out.println(AutoWrapper.wrapTextByWidth(aHeatTemp + " is not really gonna help cook or bake anything, bruv.", maxWidth));
+                    valid = false;
                 }
             }
         }
@@ -121,9 +122,10 @@ public class HotRecipe extends Recipe
                 valid = false;
             }else
             {
-                if(aHeatTemp == 0)
+                if(aHeatTemp <= 0)
                 {
-                    System.out.println(AutoWrapper.wrapTextByWidth("0 is not really gonna help cook or bake anything, bruv.", maxWidth));
+                    System.out.println(AutoWrapper.wrapTextByWidth(aHeatTemp + " is not really gonna help cook or bake anything, bruv.", maxWidth));
+                    valid = false;
                 }
             }
         }

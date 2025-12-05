@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
  */
 public class RecipeStepTest
 {
+    private RecipeStep recipeSt1;
+
     /**
      * Default constructor for test class RecipeStepTest
      */
@@ -28,6 +30,7 @@ public class RecipeStepTest
     @BeforeEach
     public void setUp()
     {
+        recipeSt1 = new RecipeStep("beat eggs");
     }
 
     /**
@@ -39,4 +42,19 @@ public class RecipeStepTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void testGetter()
+    {
+        assertEquals("beat eggs", recipeSt1.getStep());
+    }
+
+    @Test
+    public void testSetter()
+    {
+        recipeSt1.setStep("beat eggs with hand mixer.");
+        assertEquals("beat eggs with hand mixer.", recipeSt1.getStep());
+    }
 }
+
+

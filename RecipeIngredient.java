@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.text.DecimalFormat;
 
 /**
  * Write a description of class RecipeIngredients here.
@@ -8,7 +9,8 @@ import java.util.HashMap;
  */
 public class RecipeIngredient
 {
-    // instance variables - replace the example below with your own
+    // instance variables - replace the example below with your own 
+    private DecimalFormat formatForWholeUnits = new DecimalFormat("#");
     private double amount;
     private String measurement;
     private String ingredient;
@@ -77,17 +79,18 @@ public class RecipeIngredient
         this.ingredient = ingredient;
     }
     
-    public void setAmount(double ammount)
+    public void setAmount(double amount)
     {
-        if(amount <= 0)
+        if(amount >= 0)
+        {
+            this.amount = amount;
+        }
+        else
         {
             System.out.println("invalid value for amount detected." + 
             "\n"+
             "Please enter valid value.");
             return;
-        }
-        else{
-            this.amount = amount;
         }
     }
     
@@ -124,7 +127,7 @@ public class RecipeIngredient
     
     public String getRecipeIngredient()
     {
-        return amount + " " + ingredient;
+        return formatForWholeUnits.format(amount) + " " + ingredient;
     }
     
     public String getRegRecipeIngredient()
