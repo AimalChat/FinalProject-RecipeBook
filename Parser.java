@@ -91,12 +91,13 @@ public class Parser
     
     public static String getName()
     {
+        Scanner reader = new Scanner(System.in);
         // The full input line.
         String inputLine;
         // print prompt
         System.out.print("> ");     
 
-        inputLine = reader.nextLine().trim().toLowerCase();
+        inputLine = reader.nextLine().trim();
         return inputLine;
     }
     
