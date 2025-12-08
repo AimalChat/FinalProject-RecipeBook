@@ -119,6 +119,10 @@ public class RecipeBook
         return wantToQuit;
     }
     
+    /**
+     * Shows a list of all the commands that the user can currently use
+     * alongside a short description of what they do.
+     */
     public void help(){
         
         if(currentState == RecipeBookState.RECIPE_VIEW){
