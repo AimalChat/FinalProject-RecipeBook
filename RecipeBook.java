@@ -323,7 +323,7 @@ public class RecipeBook
                 index++;
             }
 
-            for(String index : listOfRecipes.keySet())
+            for(String index : listOfFavorites.keySet())
             {
                 System.out.println((index) + "." + listOfFavorites.get(index).getName());
             }
