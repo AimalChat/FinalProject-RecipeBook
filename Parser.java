@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Parser
 {
     // instance variables - replace the example below with your own
-    private Scanner reader;
+    private static Scanner reader;
     private CommandWords commands;
 
     /**
@@ -79,6 +79,17 @@ public class Parser
     }
     
     public String getLine()
+    {
+        // The full input line.
+        String inputLine;
+        // print prompt
+        System.out.print("> ");     
+
+        inputLine = reader.nextLine().trim().toLowerCase();
+        return inputLine;
+    }
+    
+    public static String getName()
     {
         // The full input line.
         String inputLine;

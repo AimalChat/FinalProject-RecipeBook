@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 /**
  * Write a description of class Recipe here.
@@ -13,9 +14,10 @@ public class Recipe
     private DecimalFormat formatForRating = new DecimalFormat("#.#");
     private String recipeName;
     private String recipeAuthor;
-    private int recipeStepCounter = 0;
-    private ArrayList<RecipeStep> recipeSteps;
-    private ArrayList<RecipeIngredient> recipeIngredients;
+    private int recipeStepCounter = 1;
+    private int recipeIngredientCounter = 1;
+    private HashMap<Integer, RecipeStep> recipeSteps;
+    private HashMap<Integer,RecipeIngredient> recipeIngredients;
     private String description;
     private int servingAmt;
     protected int maxWidth = 40;
@@ -26,8 +28,8 @@ public class Recipe
     */
     public Recipe(String recipeName, String recipeAuthor, String description, int servingAmt)
     {
-        recipeSteps = new ArrayList<>();
-        recipeIngredients = new ArrayList<>();
+        recipeSteps = new HashMap<>();
+        recipeIngredients = new HashMap<>();
         comments = new ArrayList<>();
         this.recipeName = recipeName;
         this.recipeAuthor = recipeAuthor;
@@ -37,8 +39,16 @@ public class Recipe
     
     public Recipe()
     {
-        recipeSteps = new ArrayList<>();
-        recipeIngredients = new ArrayList<>();
+        recipeSteps = new HashMap<>();
+        recipeIngredients = new HashMap<>();
+        comments = new ArrayList<>();
+    }
+    
+    public Recipe(String recipeAuthor)
+    {
+        this.recipeAuthor = recipeAuthor;
+        recipeSteps = new HashMap<>();
+        recipeIngredients = new HashMap<>();
         comments = new ArrayList<>();
     }
     
@@ -94,7 +104,7 @@ public class Recipe
     public ArrayList<RecipeIngredient> getConvertedIngredients(int desiredServings)
     {
         ArrayList<RecipeIngredient> convertedIngredients = new ArrayList<>();
-        for(RecipeIngredient ingredient : recipeIngredients){
+        for(RecipeIngredient ingredient : recipeIngredients.values()){
             double newAmount = ingredient.getAmount() * (desiredServings / servingAmt);
             if(ingredient.getMeasurement().equals(null))
             {
@@ -131,12 +141,12 @@ public class Recipe
         return comments;
     }
     
-    public ArrayList<RecipeIngredient> getIngredients()
+    public HashMap<Integer, RecipeIngredient> getIngredients()
     {
         return recipeIngredients;
     }
     
-    public ArrayList<RecipeStep> getSteps()
+    public HashMap<Integer, RecipeStep> getSteps()
     {
         return recipeSteps;
     }
@@ -172,7 +182,7 @@ public class Recipe
         int counter = 1;
         System.out.println("--Ingredient List--" + 
         "\n");
-        for(RecipeIngredient ingredient : recipeIngredients)
+        for(RecipeIngredient ingredient : recipeIngredients.values())
         {
             if(ingredient.getMeasurement() == null)
             {
@@ -197,10 +207,12 @@ public class Recipe
     {
         if(amount > 0)
         {
-            recipeIngredients.add(new RecipeIngredient(amount, measurement, ingredient));
+            recipeIngredients.put(recipeIngredientCounter, new RecipeIngredient(amount, measurement, ingredient));
+            recipeIngredientCounter++;
         }else if(needsMeasurement == false)
         {
-            recipeIngredients.add(new RecipeIngredient(amount, ingredient));
+            recipeIngredients.put(recipeIngredientCounter,new RecipeIngredient(amount, ingredient));
+            recipeIngredientCounter++;
         }
         else{
             System.out.println("invalid value for mesurements detected." + 
@@ -215,14 +227,15 @@ public class Recipe
      */
     public void addIngredient(RecipeIngredient ingredient)
     {
-        recipeIngredients.add(ingredient);
+        recipeIngredients.put(recipeIngredientCounter,ingredient);
+        recipeIngredientCounter++;
     }
     
     public void printSteps()
     {
-        int counter = 1;
+        int counter = 0;
         System.out.println("--Recipe Steps--" + "\n");
-        for(RecipeStep step : recipeSteps)
+        for(RecipeStep step : recipeSteps.values())
         {
             System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(step.getStep(), maxWidth) + "\n");
             counter++;
@@ -231,7 +244,8 @@ public class Recipe
     
     public void addRecipeStep(RecipeStep step)
     {
-        recipeSteps.add(step);
+        recipeSteps.put(recipeStepCounter, step);
+        recipeStepCounter++;
     }
     
     public void printComments()

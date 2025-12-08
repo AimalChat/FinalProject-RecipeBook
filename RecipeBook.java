@@ -25,7 +25,7 @@ public class RecipeBook
     /**
      * Constructor for objects of class RecipeBook
      */
-    public RecipeBook(String name)
+    public RecipeBook (String name)
     {
         this.name = name;
         for(Recipe recipe : basics.getRecipes())
@@ -45,6 +45,13 @@ public class RecipeBook
         }
 
         System.out.println("See you next time! :D");
+    }
+    
+    public static void main(String[] args)
+    {
+        System.out.println("Please input your name.");
+        
+        new RecipeBook(Parser.getName());        
     }
 
     /**
@@ -198,12 +205,12 @@ public class RecipeBook
     public void create()
     {
         currentState = RecipeBookState.CREATE;
-        currentRecipe = new Recipe(null, name, null, 0);
+        currentRecipe = new Recipe(name);
         //recipes.add(currentRecipe);
         System.out.println("--Create Mode--" + "\n" +
         AutoWrapper.wrapTextByWidth("You are currently in the creation view of your own recipe!" + "\n" +
         "Before doing much else, it would be best if you were to initialize the description and name of your recipe." + "\n" +
-        "To add an ingredient, a step or a note, please follow this format: " + "\n" +
+        "To add, i.e. an ingredient, a step or a note, please follow this format, for more help type 'add': " + "\n" +
         "add ___________", maxWidth));
         
         Command command = parser.getCommand();
@@ -223,8 +230,8 @@ public class RecipeBook
         switch(adding)
         {
             //IMPORTANT! NOT ACTUALLY CORRECT YET!
-            case "description" -> parser.getLine();
-            case "name" -> parser.getCommand();
+            case "description" -> currentRecipe.setDescription(parser.getLine());
+            case "name" -> currentRecipe.setRecipeName(parser.getLine());
             case "ingredient" -> parser.getLine();
             case "step" -> parser.getLine();
             case "note" -> parser.getLine();
@@ -278,6 +285,7 @@ public class RecipeBook
         {
             favorites.remove(currentRecipe);
             listOfFavorites.remove(currentRecipe);
+            System.out.println("Removed from favorites.");
         }
         else
         {
@@ -286,6 +294,7 @@ public class RecipeBook
             {
                 if(listOfRecipes.get(index).equals(currentRecipe)){
                     listOfFavorites.put(index, currentRecipe);
+                    System.out.println("Added to favorites.");
                 }
             }
         }
@@ -351,6 +360,7 @@ public class RecipeBook
     {
         currentState = RecipeBookState.MENU;
         printWelcome();
+        printMenu();
     }
 
     private boolean exit(Command command)

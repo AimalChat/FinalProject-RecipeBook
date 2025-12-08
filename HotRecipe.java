@@ -21,7 +21,11 @@ public class HotRecipe extends Recipe
     
     public HotRecipe()
     {
-        
+    }
+    
+    public HotRecipe(String recipeAuthor)
+    {
+        super(recipeAuthor);
     }
 
     /**
