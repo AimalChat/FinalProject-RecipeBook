@@ -47,6 +47,9 @@ public class RecipeBook
         System.out.println("See you next time! :D");
     }
     
+    /**
+     * Allows other form of command menus to use the RecipeBook
+     */
     public static void main(String[] args)
     {
         System.out.println("Please input your name.");
