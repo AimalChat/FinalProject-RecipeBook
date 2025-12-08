@@ -155,6 +155,10 @@ public class RecipeBook
             System.out.println("Edit: modify something inside the recipe.");
             System.out.println("Remove: remove something from the recipe.");
             System.out.println("Help: shows all possible commands that you can use.");
+            System.out.println("Exit: exit the recipe book and save the changes"+
+            "\n"+ "inside an object.");
+            System.out.println("Confirm: Comfirms the recipe that you want do add"+
+            "\n" + "to the recipe book.");
         }
         
         if(currentState == RecipeBookState.FAVORITES){
@@ -164,10 +168,6 @@ public class RecipeBook
             System.out.println("Exit: exit the recipe book and save the changes"+
             "\n"+ "inside an object.");
             System.out.println("Help: shows all possible commands that you can use.");
-            System.out.println("Exit: exit the recipe book and save the changes"+
-            "\n"+ "inside an object.");
-            System.out.println("Confirm: Comfirms the recipe that you want do add"+
-            "\n" + "to the recipe book.");
         }
     }
     
