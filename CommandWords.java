@@ -35,6 +35,7 @@ public class CommandWords
         validCommands.put("create", CommandWord.CREATE);
         validCommands.put("help", CommandWord.HELP);
         validCommands.put("favorites", CommandWord.FAVORITES);
+        validCommands.put("confirm", CommandWord.CONFIRM);
     }
 
     /**

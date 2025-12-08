@@ -114,6 +114,8 @@ public class RecipeBook
                 case REMOVE -> remove(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
                 case HELP -> help();
+                case EXIT -> wantToQuit = exit(command);
+                case CONFIRM -> confirm();
             }
         }
         return wantToQuit;
@@ -163,6 +165,11 @@ public class RecipeBook
             "\n"+ "inside an object.");
             System.out.println("Help: shows all possible commands that you can use.");
         }
+    }
+    
+    public void confirm()
+    {
+        
     }
     
     public void remove(Command command)
