@@ -174,26 +174,43 @@ public class RecipeBook
         }
     }
     
+    /**
+     * Adds the recipe with the modifications from the add command.
+     */
     public void confirm()
     {
         
     }
     
+    /**
+     * Removes something from the recipe class currently being made if possible.
+     */
     public void remove(Command command)
     {
         
     }
     
+    /**
+     * Modify something from the recipe class currently being made if possible.
+     */
     public void edit(Command command)
     {
         
     }
     
+    /**
+     * Add something to the recipe class currently being made if possible.
+     */
     public void add(Command command)
     {
         
     }
 
+    /**
+     * Shows a selected detail of the recipe.
+     * Details that can be shown include comments, steps, ingredients, details and recipe.
+     * On exception
+     */
     public void view(Command command)
     {
         if(!command.hasSecondWord())
@@ -220,6 +237,9 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Sends the user to the create menu and changes the commands accordingly.
+     */
     public void create()
     {
         currentState = RecipeBookState.CREATE;
@@ -262,6 +282,11 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Adds a comment to the current recipe.
+     * It uses a rating between 1 and 5, the name of the user of
+     * the recipe book and the comment list.
+     */
     public void comment()
     {
         System.out.println(AutoWrapper.wrapTextByWidth("Please write your comment in this specific format: rating, comment." 
@@ -297,6 +322,9 @@ public class RecipeBook
         currentRecipe.getComments().add(new Comment(name,comment,rating));
     }
 
+    /**
+     * Adds the recipe to the list of favorite recipes.
+     */
     public void favorite()
     {
         if(favorites.contains(currentRecipe))
@@ -318,12 +346,19 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Sets the Recipe Book state to FAVORITES and gets the list of the user's
+     * favorite recipes.
+     */
     public void favoritesList()
     {
         currentState = RecipeBookState.FAVORITES;
         getFavoritedRecipes();
     }
     
+    /**
+     * Prints a list of all the recipes from listOfFavorites.
+     */
     public void getFavoritedRecipes()
     {
         if(!favorites.isEmpty()){
@@ -344,6 +379,11 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Imput a double value to receive the amount of the current ingredients
+     * required to complete the current recipe.
+     * Will send an error if the double value is invalid.
+     */
     public void convert(Command command)
     {
         double desiredYield;
@@ -374,6 +414,9 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Sends the user to the Main Menu.
+     */
     public void back()
     {
         currentState = RecipeBookState.MENU;
@@ -381,11 +424,17 @@ public class RecipeBook
         printMenu();
     }
 
+    /**
+     * Ends the program and stores all values inside an object.
+     */
     private boolean exit(Command command)
     {
         return true;
     }
 
+    /**
+     * Prints all the recipes from the listOfRecipes.
+     */
     public void printMenu()
     {
         if(!recipes.isEmpty()){
@@ -402,7 +451,9 @@ public class RecipeBook
             }
         }
     }
-    
+    /**
+     * Prints all the recipes from the listOfFavorites.
+     */
     public void printFavorites()
     {
         if(!favorites.isEmpty()){
@@ -422,22 +473,30 @@ public class RecipeBook
         }
     }
 
+    /**
+     * Prints a welcome message to the user.
+     */
     public void printWelcome()
     {
         System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
         System.out.println("New Features" + "\n" + "IMP." + "\n");
     }
 
+    /**
+     * Adds a recipe to recipes.
+     */
     public void addRecipe(Recipe recipe)
     {
         recipes.add(recipe);
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * View information about a recipe if the user is in 
+     * the Main Menu or in Favorites and sends the user to recipe_view.
+     * Prints a message explaining how the commands work if the user doesn't
+     * write anything after select.
+     * Prints an error message if the user selects something that the RecipeBook
+     * doesn't find listOfRecipes or listOfFavorites.
      */
     public void select(Command command)
     {
