@@ -209,7 +209,7 @@ public class RecipeBook
     /**
      * Shows a selected detail of the recipe.
      * Details that can be shown include comments, steps, ingredients, details and recipe.
-     * On exception
+     * @exception prints all words that can follow view if it doesn't have a second word.
      */
     public void view(Command command)
     {
@@ -284,8 +284,9 @@ public class RecipeBook
 
     /**
      * Adds a comment to the current recipe.
-     * It uses a rating between 1 and 5, the name of the user of
+     * It uses an integer between 1 and 5, the name of the user of
      * the recipe book and the comment list.
+     * @error If missing a rating or a comment, prints an error code.
      */
     public void comment()
     {
@@ -382,7 +383,7 @@ public class RecipeBook
     /**
      * Imput a double value to receive the amount of the current ingredients
      * required to complete the current recipe.
-     * Will send an error if the double value is invalid.
+     * @error Will send an error if the double value is invalid.
      */
     public void convert(Command command)
     {
@@ -493,9 +494,9 @@ public class RecipeBook
     /**
      * View information about a recipe if the user is in 
      * the Main Menu or in Favorites and sends the user to recipe_view.
-     * Prints a message explaining how the commands work if the user doesn't
+     * @exception Prints a message explaining how the commands work if the user doesn't
      * write anything after select.
-     * Prints an error message if the user selects something that the RecipeBook
+     * @error Prints an error message if the user selects something that the RecipeBook
      * doesn't find listOfRecipes or listOfFavorites.
      */
     public void select(Command command)

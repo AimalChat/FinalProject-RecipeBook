@@ -4,9 +4,11 @@ Tell the reader (someone who does not know anything about this project)
 all they need to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
+PROJECT TITLE: Recipe Book
+PURPOSE OF PROJECT: Store recipes and prints information about each recipes
+when needed.
 VERSION or DATE:
-HOW TO START THIS PROJECT:
+HOW TO START THIS PROJECT: Open command prompt, open the file that contains
+the project, compile all
 AUTHORS:
 USER INSTRUCTIONS:

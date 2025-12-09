@@ -37,6 +37,9 @@ public class Recipe
         this.servingAmt = servingAmt;
     }
     
+    /**
+     * 
+     */
     public Recipe()
     {
         recipeSteps = new HashMap<>();
@@ -44,6 +47,9 @@ public class Recipe
         comments = new ArrayList<>();
     }
     
+    /**
+     * 
+     */
     public Recipe(String recipeAuthor)
     {
         this.recipeAuthor = recipeAuthor;
@@ -52,46 +58,73 @@ public class Recipe
         comments = new ArrayList<>();
     }
     
+    /**
+     * 
+     */
     public int getStepsSize()
     {
         return recipeSteps.size();
     }
     
+    /**
+     * 
+     */
     public int getIngredientsSize()
     {
         return recipeIngredients.size();
     }
     
+    /**
+     * 
+     */
     public int getCommentsSize()
     {
         return comments.size();
     }
     
+    /**
+     * 
+     */
     public void setServingAmt(int servingAmt)
     {
         this.servingAmt = servingAmt;
     }
     
+    /**
+     * 
+     */
     public void setDescription(String description)
     {
         this.description = description;
     }
     
+    /**
+     * 
+     */
     public void setRecipeAuthor(String recipeAuthor)
     {
         this.recipeAuthor = recipeAuthor;
     }
     
+    /**
+     * 
+     */
     public void setRecipeName(String recipeName)
     {
         this.recipeName = recipeName;
     }
     
+    /**
+     * 
+     */
     public void addComment(Comment comment)
     {
         comments.add(comment);
     }
     
+    /**
+     * 
+     */
     public void printDetails()
     {
         System.out.println("Author: " + recipeAuthor + "\n" +
@@ -101,6 +134,9 @@ public class Recipe
         "Overall Rating: " + getAverageRating());
     }
     
+    /**
+     * 
+     */
     public ArrayList<RecipeIngredient> getConvertedIngredients(int desiredServings)
     {
         ArrayList<RecipeIngredient> convertedIngredients = new ArrayList<>();
@@ -119,6 +155,9 @@ public class Recipe
         return convertedIngredients;
     }
     
+    /**
+     * 
+     */
     public String getAverageRating()
     {
         double average = 0;
@@ -136,31 +175,49 @@ public class Recipe
         return formatForRating.format((average/counter));
     }
     
+    /**
+     * 
+     */
     public ArrayList<Comment> getComments()
     {
         return comments;
     }
     
+    /**
+     * 
+     */
     public HashMap<Integer, RecipeIngredient> getIngredients()
     {
         return recipeIngredients;
     }
     
+    /**
+     * 
+     */
     public HashMap<Integer, RecipeStep> getSteps()
     {
         return recipeSteps;
     }
     
+    /**
+     * 
+     */
     public String getAuthor()
     {
         return recipeAuthor;
     }
     
+    /**
+     * 
+     */
     public String getName()
     {
         return recipeName;
     }    
     
+    /**
+     * 
+     */
     public void printRecipe()
     {
         System.out.println("--- " + recipeName + " ---" + 
@@ -170,6 +227,9 @@ public class Recipe
         printSteps();
     }
     
+    /**
+     * 
+     */
     public void printDescription()
     {
         System.out.println(AutoWrapper.wrapTextByWidth(description, maxWidth));
@@ -177,6 +237,9 @@ public class Recipe
         System.out.println("Recipe serves " + (int) servingAmt + " people.");
     }
     
+    /**
+     * 
+     */
     public void printIngredientsList()
     {
         int counter = 1;
@@ -203,6 +266,9 @@ public class Recipe
         }
     }
     
+    /**
+     * 
+     */
     public void addIngredients(double amount, String measurement, String ingredient, boolean needsMeasurement)
     {
         if(amount > 0)
@@ -231,6 +297,9 @@ public class Recipe
         recipeIngredientCounter++;
     }
     
+    /**
+     * Prints the steps of the recipe.
+     */
     public void printSteps()
     {
         int counter = 0;
@@ -242,12 +311,18 @@ public class Recipe
         }
     }
     
+    /**
+     * Adds a recipe step to recipeStep.
+     */
     public void addRecipeStep(RecipeStep step)
     {
         recipeSteps.put(recipeStepCounter, step);
         recipeStepCounter++;
     }
     
+    /**
+     * Prints all the comments and their ratings.
+     */
     public void printComments()
     {
         System.out.println("--Thoughts on this recipe.-- "+ "\n");

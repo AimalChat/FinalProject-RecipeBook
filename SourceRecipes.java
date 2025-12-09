@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class SourceRecipes here.
- *
- * @author (your name)
+ * Adds basic recipes to listOfRecipes when starting the program.
+ * 
+ * @author Aimal
  * @version (a version number or a date)
  */
 public class SourceRecipes
