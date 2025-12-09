@@ -38,7 +38,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * Constructor without an author.
      */
     public Recipe()
     {
@@ -48,7 +48,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * Constructor with an author.
      */
     public Recipe(String recipeAuthor)
     {
@@ -59,7 +59,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return recipeSteps.size
      */
     public int getStepsSize()
     {
@@ -67,7 +67,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return recipeIngredients
      */
     public int getIngredientsSize()
     {
@@ -75,7 +75,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return comments.size
      */
     public int getCommentsSize()
     {
@@ -83,7 +83,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param int servingAmt
      */
     public void setServingAmt(int servingAmt)
     {
@@ -91,7 +91,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param String description
      */
     public void setDescription(String description)
     {
@@ -99,7 +99,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param recipeAuthor
      */
     public void setRecipeAuthor(String recipeAuthor)
     {
@@ -107,7 +107,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param recipeName
      */
     public void setRecipeName(String recipeName)
     {
@@ -115,7 +115,8 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param comment
+     * Adds comment to comments.
      */
     public void addComment(Comment comment)
     {
@@ -123,7 +124,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * Shows details
      */
     public void printDetails()
     {
@@ -135,7 +136,8 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param int desiredServings
+     * returns the amount needed for each ingredients in the converted recipe.
      */
     public ArrayList<RecipeIngredient> getConvertedIngredients(int desiredServings)
     {
@@ -156,7 +158,8 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return average/counter
+     * prints an average of all the comments's rating.
      */
     public String getAverageRating()
     {
@@ -176,7 +179,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return comments
      */
     public ArrayList<Comment> getComments()
     {
@@ -184,7 +187,8 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param Integer, RecipeIngredient
+     * @return recipeIngredients
      */
     public HashMap<Integer, RecipeIngredient> getIngredients()
     {
@@ -192,7 +196,8 @@ public class Recipe
     }
     
     /**
-     * 
+     * @param Integer, RecipeStep.
+     * @return recipeSteps.
      */
     public HashMap<Integer, RecipeStep> getSteps()
     {
@@ -200,7 +205,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return recipeAuthor.
      */
     public String getAuthor()
     {
@@ -208,7 +213,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * @return recipeName.
      */
     public String getName()
     {
@@ -216,7 +221,7 @@ public class Recipe
     }    
     
     /**
-     * 
+     * Prints the complete description of the recipe, including the ingredients and the steps
      */
     public void printRecipe()
     {
@@ -228,7 +233,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * Prints the description of the recipe
      */
     public void printDescription()
     {
@@ -238,7 +243,7 @@ public class Recipe
     }
     
     /**
-     * 
+     * Prints all the ingredients and their details from recipeIngredients
      */
     public void printIngredientsList()
     {
@@ -267,23 +272,25 @@ public class Recipe
     }
     
     /**
-     * 
+     * Add an ingredient to the recipe.
+     * @param double amount, String ingredient, boolean needsMeasurements and String measurement
+     * @exception if needsMeasurements is false, measurement will be ignored.
      */
     public void addIngredients(double amount, String measurement, String ingredient, boolean needsMeasurement)
     {
-        if(amount > 0)
+        if(amount <= 0)
         {
-            recipeIngredients.put(recipeIngredientCounter, new RecipeIngredient(amount, measurement, ingredient));
-            recipeIngredientCounter++;
+            System.out.println("invalid value for mesurements detected." + 
+            "\n"+
+            "Please enter valid value.");
         }else if(needsMeasurement == false)
         {
             recipeIngredients.put(recipeIngredientCounter,new RecipeIngredient(amount, ingredient));
             recipeIngredientCounter++;
         }
         else{
-            System.out.println("invalid value for mesurements detected." + 
-            "\n"+
-            "Please enter valid value.");
+            recipeIngredients.put(recipeIngredientCounter, new RecipeIngredient(amount, measurement, ingredient));
+            recipeIngredientCounter++;
         }
     }
     
