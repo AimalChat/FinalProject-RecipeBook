@@ -153,17 +153,11 @@ public class Recipe
         for(RecipeIngredient ingredient : recipeIngredients.values())
         {
             
-            double newAmount = ingredient.getAmount() * (desiredServings / servingAmt);
+            double ratio = (double) desiredServings / servingAmt;
+            double newAmount = ingredient.getAmount() * ratio;
             
-            if(ingredient.getMeasurement() == null)
-            {
-                RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getIngredient());
-                convertedIngredients.add(convertedIngredient);
-            }else
-            {
-                RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getMeasurement(), ingredient.getIngredient());
-                convertedIngredients.add(convertedIngredient);
-            }
+            RecipeIngredient converted = new RecipeIngredient(newAmount, ingredient.getMeasurement(), ingredient.getIngredient());
+            convertedIngredients.add(converted);
         }
         
         return convertedIngredients;
@@ -264,45 +258,8 @@ public class Recipe
         "\n");
         for(RecipeIngredient ingredient : recipeIngredients.values())
         {
-            if(ingredient.getMeasurement() == null)
-            {
-                System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRecipeIngredient(),maxWidth));
-                counter++;
-            }else
-            {
-                if(((Math.abs(ingredient.getAmount()) * 10) % 10) == 0)
-                {
-                    System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getWholeIntRegRecipeIngredient(),maxWidth));
-                    counter++;
-                }else
-                {
-                    System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRegRecipeIngredient(),maxWidth));
-                    counter++;
-                }
-            }
-        }
-    }
-    
-    /**
-     * Add an ingredient to the recipe.
-     * @param double amount, String ingredient, boolean needsMeasurements and String measurement
-     * @exception if needsMeasurements is false, measurement will be ignored.
-     */
-    public void addIngredients(double amount, String measurement, String ingredient, boolean needsMeasurement)
-    {
-        if(amount <= 0)
-        {
-            System.out.println("invalid value for mesurements detected." + 
-            "\n"+
-            "Please enter valid value.");
-        }else if(needsMeasurement == false)
-        {
-            recipeIngredients.put(recipeIngredientCounter,new RecipeIngredient(amount, ingredient));
-            recipeIngredientCounter++;
-        }
-        else{
-            recipeIngredients.put(recipeIngredientCounter, new RecipeIngredient(amount, measurement, ingredient));
-            recipeIngredientCounter++;
+            System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRecipeIngredient(),maxWidth));
+            counter++;
         }
     }
     

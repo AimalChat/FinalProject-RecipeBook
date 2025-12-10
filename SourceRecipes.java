@@ -28,69 +28,37 @@ public class SourceRecipes
         recipe1.setType("hot");
         
         //Ingredients
-        RecipeIngredient butter = new RecipeIngredient();
-        butter.setIngredient("butter, softened");
-        butter.setAmount(1);
-        butter.setMeasurement("cup");
+        RecipeIngredient butter = new RecipeIngredient(1,"cup","butter, softened");
         recipe1.addIngredient(butter);
         
-        RecipeIngredient whiteSugar = new RecipeIngredient();
-        whiteSugar.setIngredient("white sugar");
-        whiteSugar.setAmount(1);
-        whiteSugar.setMeasurement("cup");
+        RecipeIngredient whiteSugar = new RecipeIngredient(1, "cup", "white sugar");
         recipe1.addIngredient(whiteSugar);
         
-        RecipeIngredient brownSugar = new RecipeIngredient();
-        brownSugar.setIngredient("packed brown sugar");
-        brownSugar.setAmount(1);
-        brownSugar.setMeasurement("cup");
+        RecipeIngredient brownSugar = new RecipeIngredient(1, "cup", "packed brown sugar");
         recipe1.addIngredient(brownSugar);
         
-        RecipeIngredient egg = new RecipeIngredient();
-        egg.setIngredient("eggs");
-        egg.setAmount(2);
+        RecipeIngredient egg = new RecipeIngredient(2, "unit", "eggs");
         recipe1.addIngredient(egg);
         
-        RecipeIngredient vanillaExtract = new RecipeIngredient();
-        vanillaExtract.setIngredient("vanilla extract");
-        vanillaExtract.setAmount(2);
-        vanillaExtract.setMeasurement("teaspoons");
+        RecipeIngredient vanillaExtract = new RecipeIngredient(2, "teaspoon", "vanilla extract");
         recipe1.addIngredient(vanillaExtract);
         
-        RecipeIngredient bakingSoda = new RecipeIngredient();
-        bakingSoda.setIngredient("baking soda");
-        bakingSoda.setAmount(1);
-        bakingSoda.setMeasurement("teaspoons");
+        RecipeIngredient bakingSoda = new RecipeIngredient(1, "teaspoon", "baking soda");
         recipe1.addIngredient(bakingSoda);
         
-        RecipeIngredient hotWater = new RecipeIngredient();
-        hotWater.setIngredient("hot water");
-        hotWater.setAmount(2);
-        hotWater.setMeasurement("teaspoons");
+        RecipeIngredient hotWater = new RecipeIngredient(2, "teaspoon", "hot water");
         recipe1.addIngredient(hotWater);
         
-        RecipeIngredient salt = new RecipeIngredient();
-        salt.setIngredient("salt");
-        salt.setAmount(0.5);
-        salt.setMeasurement("teaspoon");
+        RecipeIngredient salt = new RecipeIngredient(0.5, "teaspoon", "salt");
         recipe1.addIngredient(salt);
         
-        RecipeIngredient allPurposeFlour = new RecipeIngredient();
-        allPurposeFlour.setIngredient("all purpose flour");
-        allPurposeFlour.setAmount(3);
-        allPurposeFlour.setMeasurement("cups");
+        RecipeIngredient allPurposeFlour = new RecipeIngredient(3,"cup", "all purpose flour");
         recipe1.addIngredient(allPurposeFlour);
         
-        RecipeIngredient semiSweetChocolateChips = new RecipeIngredient();
-        semiSweetChocolateChips.setIngredient("semisweet chocolate chips");
-        semiSweetChocolateChips.setAmount(2);
-        semiSweetChocolateChips.setMeasurement("cups");
+        RecipeIngredient semiSweetChocolateChips = new RecipeIngredient(2, "cup", "semisweet chocolate chips");
         recipe1.addIngredient(semiSweetChocolateChips);
         
-        RecipeIngredient choppedWalnuts = new RecipeIngredient();
-        choppedWalnuts.setIngredient("chopped walnuts");
-        choppedWalnuts.setAmount(1);
-        choppedWalnuts.setMeasurement("cup");
+        RecipeIngredient choppedWalnuts = new RecipeIngredient(1, "cup", "chopped walnuts");
         recipe1.addIngredient(choppedWalnuts);
         
         //Steps

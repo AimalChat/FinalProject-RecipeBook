@@ -23,15 +23,15 @@ public class RecipeIngredient
         if(validMeasurement(measurement) == false)
         {
             System.out.println("invalid string for measurement dectected." +
-            "\n" +
-            "Please enter valid measurement.");
+                "\n" +
+                "Please enter valid measurement.");
             return;
         }
         else if(amount < 0)
         {
             System.out.println("invalid value for amount detected." + 
-            "\n"+
-            "Please enter valid value.");
+                "\n"+
+                "Please enter valid value.");
             return;
         }
         else if(amount > 0 && validMeasurement(measurement) == true) 
@@ -41,31 +41,7 @@ public class RecipeIngredient
             this.ingredient = ingredient;
         }
     }
-    
-    /**
-     * Constructor for objects of class RecipeIngredients
-     */
-    public RecipeIngredient(double amount, String ingredient)
-    {
-        if(amount <= 0)
-        {
-            System.out.println("invalid value for amount detected." + 
-            "\n"+
-            "Please enter valid value.");
-            return;
-        }
-        else if(amount > 0) 
-        {
-            this.amount = amount;
-            this.ingredient = ingredient;
-        }
-    }
-    
-    public RecipeIngredient()
-    {
-        
-    }
-    
+
     public void setMeasurement(String measurement)
     {
         if(validMeasurement(measurement) == true)
@@ -73,27 +49,27 @@ public class RecipeIngredient
             this.measurement = measurement;
         }
     }
-    
+
     public void setIngredient(String ingredient)
     {
         this.ingredient = ingredient;
     }
-    
+
     public void setAmount(double amount)
     {
-        if(amount >= 0)
+        if(amount > 0)
         {
             this.amount = amount;
         }
         else
         {
             System.out.println("invalid value for amount detected." + 
-            "\n"+
-            "Please enter valid value.");
+                "\n"+
+                "Please enter valid value.");
             return;
         }
     }
-    
+
     public boolean validMeasurement(String aMeasurement)
     {
         boolean valid;
@@ -120,31 +96,43 @@ public class RecipeIngredient
             case "gallons" -> valid = true;
             case "pinches" -> valid = true;
             case "liters" -> valid = true;
+            case "unit" -> valid = true;
+            case "units" -> valid = true;
             default -> valid = false;
         }
         return valid;
     }
-    
-    public String getWholeIntRegRecipeIngredient()
+
+    public String formattedMeasurement() 
     {
-        return (int) amount + " " + measurement + " " + ingredient;
+        if(amount == 1 || amount < 1)
+        {
+            return measurement; // singular
+        }
+        else if(measurement.equals("unit")) 
+        {
+            return "units"; // special case
+        }
+        else if(measurement.endsWith("s"))
+        {
+            return measurement; // already plural
+        }
+        else 
+        {
+            return measurement + "s"; // add plural s
+        }
     }
-    
+
     public String getRecipeIngredient()
     {
-        return formatForWholeUnits.format(amount) + " " + ingredient;
+        return amount + " " + formattedMeasurement() + " " + ingredient;
     }
-    
-    public String getRegRecipeIngredient()
-    {
-        return amount + " " + measurement + " " + ingredient;
-    }
-    
+
     public String getIngredient()
     {
         return ingredient;
     }
-    
+
     public String getMeasurement()
     {
         return measurement;

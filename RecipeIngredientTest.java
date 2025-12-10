@@ -65,7 +65,7 @@ public class RecipeIngredientTest
     @Test
     public void TextIngredientConstructor4()
     {
-        RecipeIngredient recipeIn1 = new RecipeIngredient(0, "ice cubes");
+        RecipeIngredient recipeIn1 = new RecipeIngredient(0,"units", "ice cubes");
     }
 
     @Test
@@ -79,9 +79,9 @@ public class RecipeIngredientTest
     @Test
     public void testToStringMethods()
     {
-        assertEquals("0.5 cups flour", recipeIn1.getRegRecipeIngredient());
-        RecipeIngredient recipeIn2 = new RecipeIngredient(3, "eggs");
-        assertEquals("3 eggs", recipeIn2.getRecipeIngredient());
+        assertEquals("0.5 cups flour", recipeIn1.getRecipeIngredient());
+        RecipeIngredient recipeIn2 = new RecipeIngredient(3,"units","eggs");
+        assertEquals("3 units eggs", recipeIn2.getRecipeIngredient());
     }
 
     @Test

@@ -78,6 +78,19 @@ public class Parser
         return ratingAndComment;
     }
     
+    public String[] getRecipeName()
+    {
+        // The full input line.
+        String inputLine;
+        // print prompt
+        System.out.print("> ");     
+
+        inputLine = reader.nextLine().trim().toLowerCase();
+        String[] recipeName = inputLine.split(" ");
+        
+        return recipeName;
+    }
+    
     public String getLine()
     {
         // The full input line.

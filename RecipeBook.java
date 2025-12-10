@@ -243,10 +243,16 @@ public class RecipeBook
                 
             case "name" :
                 System.out.println("For the name of your recipe, don't be a skank and put vulgarities.");
-                String recipeName = parser.getLine();
-                currentRecipe.setRecipeName(recipeName);
-                currentRecipe.printRecipe();
-                break;
+                String[] recipeName = parser.getRecipeName();
+                if(V.validateRecipeName(recipeName) != null)
+                {
+                    currentRecipe.setRecipeName(V.validateRecipeName(recipeName));
+                    currentRecipe.printRecipe();
+                    break;
+                }else
+                {
+                    break;
+                }
             
             case "description" :
                 System.out.println("For the description of your recipe, don't be a skank and put vulgarities.");
@@ -257,7 +263,7 @@ public class RecipeBook
                 
             case "ingredient" : 
                 System.out.println(AutoWrapper.wrapTextByWidth("To add an ingredient, please follow this format: " + "\n" +
-                "'amount , measurement(if needed) , ingredient'" + "\n" , maxWidth));
+                "'amount , measurement , ingredient'" + "\n" , maxWidth));
                 String[] ingredient = parser.getIngredient();
                 if(V.validateIngredient(ingredient) != null)
                 {
@@ -302,6 +308,7 @@ public class RecipeBook
                 {
                     break;
                 }
+                
         }
     }
 
@@ -348,7 +355,7 @@ public class RecipeBook
         "Before doing much else, it would be best if you were to initialize the type and name of your recipe.", maxWidth));
         System.out.println("For more help, enter 'help' to view all possible commands.");
     }
-
+    
     /**
      * Adds a comment to the current recipe.
      * It uses an integer between 1 and 5, the name of the user of
@@ -450,13 +457,13 @@ public class RecipeBook
     }
 
     /**
-     * Imput a double value to receive the amount of the current ingredients
+     * Imput a int value to receive the amount of the current ingredients
      * required to complete the current recipe.
-     * @error Will send an error if the double value is invalid.
+     * @error Will send an error if the int value is invalid.
      */
     public void convert(Command command)
     {
-        double desiredYield;
+        int desiredYield;
         if(!command.hasSecondWord())
         {
             System.out.println("Please enter a value that corresponds to"
@@ -465,7 +472,7 @@ public class RecipeBook
         }
         
         try{
-            desiredYield = Double.parseDouble(command.getSecondWord());
+            desiredYield = Integer.parseInt(command.getSecondWord());
         } catch(NumberFormatException e)
         {
             System.out.println("Not a valid number." +
@@ -477,7 +484,7 @@ public class RecipeBook
         if(desiredYield >= 1)
         {
             System.out.println("-----Ingredient List for " + desiredYield + " people.-----");
-            for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients((int) desiredYield))
+            for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients(desiredYield))
             {
                 System.out.println(ingredient.getRecipeIngredient());
             }

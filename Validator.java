@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Validator
 {
-    private RecipeIngredient rI = new RecipeIngredient();
+    private RecipeIngredient rI = new RecipeIngredient(1, "cup", "sadness");
 
     /**
      * Constructor for objects of class Validator
@@ -16,6 +16,25 @@ public class Validator
     public Validator()
     {
         // initialise instance variables
+    }
+    
+    public String validateRecipeName(String[] recipeName)
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        if(recipeName.length == 0)
+        {
+            System.out.println("Please write a valid step.");
+            return null;
+        }else
+        {
+            for(int i = 0; i < recipeName.length; i++)
+            {
+                recipeName[i] = recipeName[i].substring(0,1).toUpperCase() + recipeName[i].substring(1);
+                sb.append(recipeName[i] + " ");
+            }
+        }
+        return sb.toString().trim();
     }
 
     /**
@@ -26,35 +45,20 @@ public class Validator
      */
     public RecipeIngredient validateIngredient(String[] ingredient)
     {   
-        if(!rI.validMeasurement(ingredient[1]) && ingredient.length >= 2)
+        if (ingredient.length < 3) {
+            System.out.println("Incomplete ingredient format." + "\n"+ "Please follow the format: 'amount, measurement, ingredient.'");
+            return null;
+        }
+        
+        for(int i = 0; i < ingredient.length; i++)
         {
-            //without measurement
-            if(ingredient[1].equals(""))
-            {
-                System.out.println("Ingredient not found.");
-                return null;
-            } 
-            else if(ingredient.length >= 2)
-            {
-                ingredient[1] = String.join(",", Arrays.copyOfRange(ingredient, 1, ingredient.length)).trim();
-            }
-            
-            double amount;
-            String ingredientToBe = ingredient[1];
-            
-            try{
-                amount = Double.parseDouble(ingredient[0]);
-            } 
-            catch(NumberFormatException e)
-            {
-                System.out.println("Not a valid amount." +
-                    "\n" +
-                    "Please enter a valid amount for the ingredient");
-                return null;
-            }
-            
-            return new RecipeIngredient(amount, ingredientToBe);
-            
+            ingredient[i] = ingredient[i].trim();
+        }
+
+        if(!rI.validMeasurement(ingredient[1]))
+        {
+            System.out.println("The entered measurement is invalid.");
+            return null;
         } 
         else if(rI.validMeasurement(ingredient[1]) && ingredient.length >= 3)
         {
@@ -64,13 +68,13 @@ public class Validator
                 System.out.println("Ingredient not found.");
                 return null;
             } 
-            else if(ingredient.length >= 3)
+            else
             {
                 ingredient[2] = String.join(",", Arrays.copyOfRange(ingredient, 2, ingredient.length)).trim();
             }
             
             double amount;
-            String measurement = ingredient[1];
+            String measurement = ingredient[1].toLowerCase();
             String ingredientToBe = ingredient[2];
             
             try{
