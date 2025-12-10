@@ -25,6 +25,7 @@ public class SourceRecipes
         recipe1.setDescription(AutoWrapper.wrapTextByWidth("This chocolate chip cookie recipe makes dozens of cookies with crisp edges, chewy centers, and melty chocolate chips. It is truly the best!", maxWidth));
         recipe1.setRecipeAuthor("Dora");
         recipe1.setServingAmt(48);
+        recipe1.setType("hot");
         
         //Ingredients
         RecipeIngredient butter = new RecipeIngredient();

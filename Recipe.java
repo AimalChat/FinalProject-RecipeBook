@@ -22,6 +22,7 @@ public class Recipe
     private int servingAmt;
     protected int maxWidth = 40;
     private ArrayList<Comment> comments;
+    private String type = "Blank";
 
     /**
      * Constructor for objects of class Recipe
@@ -56,6 +57,11 @@ public class Recipe
         recipeSteps = new HashMap<>();
         recipeIngredients = new HashMap<>();
         comments = new ArrayList<>();
+    }
+    
+    public void setType(String type)
+    {
+        this.type = type;
     }
     
     /**
@@ -130,6 +136,7 @@ public class Recipe
     {
         System.out.println("Author: " + recipeAuthor + "\n" +
         "Recipe: " + recipeName + "\n" +
+        "Type: " + type + " recipe" + "\n" +
         "Serves " + servingAmt + " people.\n" +
         "Description: " + description + "\n" +
         "Overall Rating: " + getAverageRating());
@@ -142,9 +149,13 @@ public class Recipe
     public ArrayList<RecipeIngredient> getConvertedIngredients(int desiredServings)
     {
         ArrayList<RecipeIngredient> convertedIngredients = new ArrayList<>();
-        for(RecipeIngredient ingredient : recipeIngredients.values()){
+        
+        for(RecipeIngredient ingredient : recipeIngredients.values())
+        {
+            
             double newAmount = ingredient.getAmount() * (desiredServings / servingAmt);
-            if(ingredient.getMeasurement().equals(null))
+            
+            if(ingredient.getMeasurement() == null)
             {
                 RecipeIngredient convertedIngredient = new RecipeIngredient(newAmount, ingredient.getIngredient());
                 convertedIngredients.add(convertedIngredient);
@@ -154,6 +165,7 @@ public class Recipe
                 convertedIngredients.add(convertedIngredient);
             }
         }
+        
         return convertedIngredients;
     }
     
@@ -225,7 +237,7 @@ public class Recipe
      */
     public void printRecipe()
     {
-        System.out.println("--- " + recipeName + " ---" + 
+        System.out.println("----- " + recipeName + " -----" + 
         "\n" + "Author: " + recipeAuthor + "\n");
         printIngredientsList();
         System.out.println("\n");
@@ -248,7 +260,7 @@ public class Recipe
     public void printIngredientsList()
     {
         int counter = 1;
-        System.out.println("--Ingredient List--" + 
+        System.out.println("-----------Ingredient List-----------" + 
         "\n");
         for(RecipeIngredient ingredient : recipeIngredients.values())
         {
@@ -258,7 +270,7 @@ public class Recipe
                 counter++;
             }else
             {
-                if( (int) ((Math.abs(ingredient.getAmount()) * 10) % 10) == 0)
+                if(((Math.abs(ingredient.getAmount()) * 10) % 10) == 0)
                 {
                     System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getWholeIntRegRecipeIngredient(),maxWidth));
                     counter++;
@@ -309,8 +321,8 @@ public class Recipe
      */
     public void printSteps()
     {
-        int counter = 0;
-        System.out.println("--Recipe Steps--" + "\n");
+        int counter = 1;
+        System.out.println("-----------Recipe Steps-----------" + "\n");
         for(RecipeStep step : recipeSteps.values())
         {
             System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(step.getStep(), maxWidth) + "\n");

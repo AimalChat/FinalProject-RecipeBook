@@ -21,6 +21,7 @@ public class RecipeBook
     private Recipe currentRecipe = null;
     private RecipeBookState currentState = RecipeBookState.MENU;
     private SourceRecipes basics = new SourceRecipes();
+    private Validator V = new Validator();
 
     /**
      * Constructor for objects of class RecipeBook
@@ -129,48 +130,47 @@ public class RecipeBook
      * alongside a short description of what they do.
      */
     public void help(){
-        
         if(currentState == RecipeBookState.RECIPE_VIEW){
-            System.out.println("Back: return to the menu.");
+            System.out.println("Back: return to the menu." + "\n");
             System.out.println("Convert: shows the amount of ingredients needed for a"+
-            "\n" + "certain amount of people that the user imputs in.");
-            System.out.println("favorite: set the recipe you're currently on inside"+
-            "\n"+ "the favorites list, or remove it if it is already there.");
+            "\n" + "certain amount of people that the user imputs in." + "\n");
+            System.out.println("Favorite: set the recipe you're currently on inside"+
+            "\n"+ "the favorites list, or remove it if it is already there." + "\n");
             System.out.println("Comment: add a coment and rating.");
-            System.out.println("View: allow you to see various details of the recipe.");
-            System.out.println("Exit: exit the recipe book and save the changes"+
-            "\n"+ "inside an object.");
-            System.out.println("Help: shows all possible commands that you can use.");
+            System.out.println("View: allow you to see various details of the recipe." + "\n");
+            System.out.println("Exit: exit the recipe book" + "\n");
+            System.out.println("Help: shows all possible commands that you can use." + "\n");
+            System.out.println("For more help, simply write the command." + "\n");
         }
         
         if(currentState == RecipeBookState.MENU){
-            System.out.println("Create: create a new recipe.");
-            System.out.println("Select: view inside a recipe of your choice.");
-            System.out.println("Exit: exit the recipe book and save the changes"+
-            "\n"+ "inside an object.");
+            System.out.println("Create: create a new recipe." + "\n");
+            System.out.println("Select: view inside a recipe of your choice." + "\n");
+            System.out.println("Exit: exit the recipe book" + "\n");
             System.out.println("favorites: see all of the recipes that you added"+
-            "\n" + "inside the favorites list.");
-            System.out.println("Help: shows all possible commands that you can use.");
+            "\n" + "inside the favorites list." + "\n");
+            System.out.println("Help: shows all possible commands that you can use." + "\n");
+            System.out.println("For more help, simply write the command." + "\n");
         }
         
         if(currentState == RecipeBookState.CREATE){
-            System.out.println("Add: add something to the recipe if it's available.");
-            System.out.println("Edit: modify something inside the recipe.");
-            System.out.println("Remove: remove something from the recipe.");
-            System.out.println("Help: shows all possible commands that you can use.");
-            System.out.println("Exit: exit the recipe book and save the changes"+
-            "\n"+ "inside an object.");
+            System.out.println("Add: add something to the recipe if it's available." + "\n");
+            System.out.println("Edit: modify something inside the recipe." + "\n");
+            System.out.println("Remove: remove something from the recipe." + "\n");
+            System.out.println("Help: shows all possible commands that you can use." + "\n");
+            System.out.println("Exit: exit the recipe book" + "\n");
             System.out.println("Confirm: Comfirms the recipe that you want do add"+
-            "\n" + "to the recipe book.");
+            "\n" + "to the recipe book." + "\n");
+            System.out.println("For more help, simply write the command." + "\n");
         }
         
         if(currentState == RecipeBookState.FAVORITES){
-            System.out.println("Create: create a new recipe.");
-            System.out.println("Select: view inside a recipe of your choice.");
-            System.out.println("Back: return to the menu.");
-            System.out.println("Exit: exit the recipe book and save the changes"+
-            "\n"+ "inside an object.");
-            System.out.println("Help: shows all possible commands that you can use.");
+            System.out.println("Create: create a new recipe." + "\n");
+            System.out.println("Select: view inside a recipe of your choice." + "\n");
+            System.out.println("Back: return to the menu." + "\n");
+            System.out.println("Exit: exit the recipe book" + "\n");
+            System.out.println("Help: shows all possible commands that you can use." + "\n");
+            System.out.println("For more help, simply write the command." + "\n");
         }
     }
     
@@ -179,7 +179,11 @@ public class RecipeBook
      */
     public void confirm()
     {
-        
+        recipes.add(currentRecipe);
+        System.out.println("Succesfully created the recipe! Good JOB :DDD");
+        currentState = RecipeBookState.MENU;
+        printWelcome();
+        printMenu();
     }
     
     /**
@@ -203,7 +207,102 @@ public class RecipeBook
      */
     public void add(Command command)
     {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("What would you like to add?" + "\n" +
+            "- Recipe Name" + "\n" +
+            "- Description" + "\n" +
+            "- Ingredient" + "\n" +
+            "- Step" + "\n" +
+            "- Type : Cold, Hot or Normal" + "\n" );
+            return;
+        }
         
+        String adding = command.getSecondWord();
+        switch(adding)
+        {
+            case "servings" :
+                System.out.println("Please input how many servings this recipe makes.");
+                String servingAmt = parser.getLine();
+                if(V.validateServingAmount(servingAmt) != 0)
+                {
+                    currentRecipe.setServingAmt(V.validateServingAmount(servingAmt));
+                    currentRecipe.printDetails();
+                    break;
+                }else
+                {
+                    break;
+                }
+            
+            case "recipe name" :
+                System.out.println("For the name of your recipe, don't be a skank and put vulgarities.");
+                String recipesName = parser.getLine();
+                currentRecipe.setRecipeName(recipesName);
+                currentRecipe.printRecipe();
+                break;
+                
+            case "name" :
+                System.out.println("For the name of your recipe, don't be a skank and put vulgarities.");
+                String recipeName = parser.getLine();
+                currentRecipe.setRecipeName(recipeName);
+                currentRecipe.printRecipe();
+                break;
+            
+            case "description" :
+                System.out.println("For the description of your recipe, don't be a skank and put vulgarities.");
+                String description = parser.getLine();
+                currentRecipe.setDescription(description);
+                currentRecipe.printDetails();
+                break;
+                
+            case "ingredient" : 
+                System.out.println(AutoWrapper.wrapTextByWidth("To add an ingredient, please follow this format: " + "\n" +
+                "'amount , measurement(if needed) , ingredient'" + "\n" , maxWidth));
+                String[] ingredient = parser.getIngredient();
+                if(V.validateIngredient(ingredient) != null)
+                {
+                    currentRecipe.addIngredient(V.validateIngredient(ingredient));
+                    currentRecipe.printRecipe();
+                    break;
+                }else
+                {
+                    break;
+                }
+                
+            case "step" : 
+                System.out.println("Please enter the step.");
+                String step = parser.getLine();
+                if(V.validateStep(step) != null)
+                {
+                    currentRecipe.addRecipeStep(V.validateStep(step));
+                    currentRecipe.printRecipe();
+                    break;
+                }else
+                {
+                    break;
+                }
+                
+            case "type" : 
+                System.out.println("For the type of recipes: "+"\n"+
+                "- Hot" + "\n" +
+                "- Cold " + "\n" +
+                "- Regular" + "\n");
+                String type = parser.getLine();
+                if(V.validateType(type) != null)
+                {
+                    switch(type)
+                    {
+                        case "hot" -> currentRecipe.setType(type);
+                        case "cold" -> currentRecipe.setType(type);
+                        case "regular" -> currentRecipe.setType(type);
+                    }
+                    currentRecipe.printDetails();
+                    break;
+                }else
+                {
+                    break;
+                }
+        }
     }
 
     /**
@@ -244,42 +343,10 @@ public class RecipeBook
     {
         currentState = RecipeBookState.CREATE;
         currentRecipe = new Recipe(name);
-        //recipes.add(currentRecipe);
-        System.out.println("--Create Mode--" + "\n" +
+        System.out.println("================== Create Mode ==================" + "\n" + "\n" +
         AutoWrapper.wrapTextByWidth("You are currently in the creation view of your own recipe!" + "\n" +
-        "Before doing much else, it would be best if you were to initialize the description and name of your recipe." + "\n" +
-        "To add, i.e. an ingredient, a step or a note, please follow this format, for more help type 'add': " + "\n" +
-        "add ___________", maxWidth));
-        
-        Command command = parser.getCommand();
-        if(!command.hasSecondWord())
-        {
-            System.out.println("What is it you would like to add?" +
-            "\n" + "-Description" +
-            "\n" + "-Name" +
-            "\n" + "-Ingredient" +
-            "\n" + "-Step" +
-            "\n" + "-Note" +
-            "\n" + "-Hot, cold or normal temperature" +
-            "\n" + "-Bake/Cook/Chill time");
-        }
-        
-        String adding = command.getSecondWord();
-        switch(adding)
-        {
-            //IMPORTANT! NOT ACTUALLY CORRECT YET!
-            case "description" -> currentRecipe.setDescription(parser.getLine());
-            case "name" -> currentRecipe.setRecipeName(parser.getLine());
-            case "ingredient" -> parser.getLine();
-            case "step" -> parser.getLine();
-            case "note" -> parser.getLine();
-            case "hot temperature" -> parser.getLine();
-            case "cold temperature" -> parser.getLine();
-            case "normal temperature" -> parser.getLine();
-            case "bake time" -> parser.getLine();
-            case "cook time" -> parser.getLine();
-            case "chill time" -> parser.getLine();
-        }
+        "Before doing much else, it would be best if you were to initialize the type and name of your recipe.", maxWidth));
+        System.out.println("For more help, enter 'help' to view all possible commands.");
     }
 
     /**
@@ -362,6 +429,8 @@ public class RecipeBook
      */
     public void getFavoritedRecipes()
     {
+        System.out.println("========Favorites");
+        
         if(!favorites.isEmpty()){
             for(Recipe recipe : favorites)
             {
@@ -372,7 +441,7 @@ public class RecipeBook
 
             for(String index : listOfFavorites.keySet())
             {
-                System.out.println((index) + "." + listOfFavorites.get(index).getName());
+                System.out.println((index) + "." + listOfFavorites.get(index).getName() + "\n");
             }
         }
         else{
@@ -407,7 +476,7 @@ public class RecipeBook
         
         if(desiredYield >= 1)
         {
-            System.out.println("--Ingredient List for " + desiredYield + " people.--");
+            System.out.println("-----Ingredient List for " + desiredYield + " people.-----");
             for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients((int) desiredYield))
             {
                 System.out.println(ingredient.getRecipeIngredient());
@@ -452,6 +521,7 @@ public class RecipeBook
             }
         }
     }
+    
     /**
      * Prints all the recipes from the listOfFavorites.
      */
@@ -479,7 +549,7 @@ public class RecipeBook
      */
     public void printWelcome()
     {
-        System.out.print("--- " + name + " 's Recipe Book ---" + "\n" + "\n");
+        System.out.print("============ " + name + " 's Recipe Book ============" + "\n" + "\n");
         System.out.println("New Features" + "\n" + "IMP." + "\n");
     }
 
