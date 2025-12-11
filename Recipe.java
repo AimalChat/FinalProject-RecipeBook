@@ -246,8 +246,10 @@ public class Recipe
      */
     public void printRecipe()
     {
-        System.out.println("----- " + recipeName + " -----" + 
-        "\n" + "Author: " + recipeAuthor + "\n");
+        System.out.println("----- " + recipeName + " -----");
+        System.out.println("\n");
+        printDetails();
+        System.out.println("\n");
         printIngredientsList();
         System.out.println("\n");
         printSteps();
