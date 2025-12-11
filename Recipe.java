@@ -12,17 +12,17 @@ public class Recipe
 {
     // instance variables - replace the example below with your own
     private DecimalFormat formatForRating = new DecimalFormat("#.#");
-    private String recipeName;
-    private String recipeAuthor;
+    private String recipeName = "Unknown";
+    private String recipeAuthor = "Unknown";
     private int recipeStepCounter = 1;
     private int recipeIngredientCounter = 1;
     private HashMap<Integer, RecipeStep> recipeSteps;
     private HashMap<Integer,RecipeIngredient> recipeIngredients;
-    private String description;
-    private int servingAmt;
+    private String description = "Unknown";
+    private int servingAmt = 0;
     protected int maxWidth = 40;
     private ArrayList<Comment> comments;
-    private String type = "Blank";
+    private String type = "Unknown";
 
     /**
      * Constructor for objects of class Recipe
@@ -57,6 +57,21 @@ public class Recipe
         recipeSteps = new HashMap<>();
         recipeIngredients = new HashMap<>();
         comments = new ArrayList<>();
+    }
+    
+    public int getServingAmount()
+    {
+        return servingAmt;
+    }
+    
+    public String getRecipeDescription()
+    {
+        return description;
+    }
+    
+    public String getRecipeType()
+    {
+        return type;
     }
     
     public void setType(String type)
@@ -221,7 +236,7 @@ public class Recipe
     /**
      * @return recipeName.
      */
-    public String getName()
+    public String getRecipeName()
     {
         return recipeName;
     }    

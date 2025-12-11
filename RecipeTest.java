@@ -91,7 +91,7 @@ public class RecipeTest
     {
         assertEquals("Dora", hotRecip1.getAuthor());
         assertEquals("4.5", hotRecip1.getAverageRating());
-        assertEquals("Chocolate Chip Cookies", hotRecip1.getName());
+        assertEquals("Chocolate Chip Cookies", hotRecip1.getRecipeName());
     }
 }
 

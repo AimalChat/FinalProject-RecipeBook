@@ -179,11 +179,44 @@ public class RecipeBook
      */
     public void confirm()
     {
-        recipes.add(currentRecipe);
-        System.out.println("Succesfully created the recipe! Good JOB :DDD");
-        currentState = RecipeBookState.MENU;
-        printWelcome();
-        printMenu();
+        if(currentRecipe.getRecipeName().equals("Unknown") || currentRecipe.getRecipeType().equals("Unknown") || currentRecipe.getRecipeDescription().equals("Unknown")|| currentRecipe.getServingAmount() == 0 || currentRecipe.getIngredientsSize() == 0 || currentRecipe.getStepsSize() == 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Incomplete recipe has been detected, please :" + "\n" + "\n");
+            if(currentRecipe.getRecipeName().equals("Unknown"))
+            {
+                sb.append("- add your recipe's name." + "\n");
+            }
+            if(currentRecipe.getRecipeType().equals("Unknown"))
+            {
+                sb.append("- add your recipe's type." + "\n");
+            }
+            if(currentRecipe.getRecipeDescription().equals("Unknown"))
+            {
+                sb.append("- add your recipe's description." + "\n");
+            }
+            if(currentRecipe.getServingAmount() == 0)
+            {
+                sb.append("- add the amount of servings your recipe provides." + "\n");
+            }
+            if(currentRecipe.getIngredientsSize() == 0)
+            {
+                sb.append("- add at the very least 1 ingredient.(Come on, just 1 :C)" + "\n");
+            }
+            if(currentRecipe.getStepsSize() == 0)
+            {
+                sb.append("- add at the very least 1 step.(You've got to have at least 1 :'<)" + "\n");
+            }
+            
+            System.out.println(sb.toString() + "\n");
+        }else
+        {
+            recipes.add(currentRecipe);
+            System.out.println("Succesfully created the recipe! Good JOB :DDD");
+            currentState = RecipeBookState.MENU;
+            printWelcome();
+            printMenu();
+        }
     }
     
     /**
@@ -448,7 +481,7 @@ public class RecipeBook
 
             for(String index : listOfFavorites.keySet())
             {
-                System.out.println((index) + "." + listOfFavorites.get(index).getName() + "\n");
+                System.out.println((index) + "." + listOfFavorites.get(index).getRecipeName() + "\n");
             }
         }
         else{
@@ -524,7 +557,7 @@ public class RecipeBook
             
             for(String indexPointer : listOfRecipes.keySet())
             {
-                System.out.println(indexPointer + "." + listOfRecipes.get(indexPointer).getName() + "\n");
+                System.out.println(indexPointer + "." + listOfRecipes.get(indexPointer).getRecipeName() + "\n");
             }
         }
     }
@@ -546,7 +579,7 @@ public class RecipeBook
 
             for(String index : listOfFavorites.keySet())
             {
-                System.out.println((index) + "." + listOfRecipes.get(index).getName());
+                System.out.println((index) + "." + listOfRecipes.get(index).getRecipeName());
             }
         }
     }
@@ -585,14 +618,14 @@ public class RecipeBook
             if(currentState == RecipeBookState.MENU){
                 for(String index : listOfRecipes.keySet())
                 {
-                    System.out.println((index) + "." + listOfRecipes.get(index).getName());
+                    System.out.println((index) + "." + listOfRecipes.get(index).getRecipeName());
                 }
             }
             
             if(currentState == RecipeBookState.FAVORITES){
                 for(String index : listOfFavorites.keySet())
                 {
-                    System.out.println((index) + "." + listOfFavorites.get(index).getName());
+                    System.out.println((index) + "." + listOfFavorites.get(index).getRecipeName());
                 }
             }
             return;
