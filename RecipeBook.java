@@ -147,7 +147,7 @@ public class RecipeBook
             System.out.println("Create: create a new recipe." + "\n");
             System.out.println("Select: view inside a recipe of your choice." + "\n");
             System.out.println("Exit: exit the recipe book" + "\n");
-            System.out.println("favorites: see all of the recipes that you added"+
+            System.out.println("Favorites: see all of the recipes that you added"+
             "\n" + "inside the favorites list." + "\n");
             System.out.println("Help: shows all possible commands that you can use." + "\n");
             System.out.println("For more help, simply write the command." + "\n");
@@ -472,11 +472,11 @@ public class RecipeBook
         System.out.println("========Favorites");
         
         if(!favorites.isEmpty()){
+            int index2 = 1;
             for(Recipe recipe : favorites)
             {
-                int index = 1;
-                listOfFavorites.put(String.valueOf(index), recipe);
-                index++;
+                listOfFavorites.put(String.valueOf(index2), recipe);
+                index2++;
             }
 
             for(String index : listOfFavorites.keySet())
