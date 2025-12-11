@@ -8,15 +8,14 @@ PROJECT TITLE: Recipe Book
 PURPOSE OF PROJECT: Store recipes and prints information about each recipes
 when needed.
 VERSION or DATE:
-HOW TO START THIS PROJECT: Open command prompt, open the file that contains
-the project, compile all
-AUTHORS: Aimal Nangyalai Shah & Alex Laurin
-USER INSTRUCTIONS: Download the Zip file containing this project and extract all files.
+HOW TO START THIS PROJECT: Download the Zip file containing this project and extract all files.
 Now, from Command Prompt, by using commands dir and cd, enter the newly extracted zip file
 in your Downloads. You'll need to do this twice. Then, once inside, when your command prompt
 says "C:\Users\YOURACCOUNT\Downloads\FinalProject-RecipeBook-master\FinalProject-RecipeBook-master>",
 write : "javac RecipeBook.java". Let it load then write : "java RecipeBook".
 You'll be now asked to write your name. Please do so. Now, you are inside the program.
+AUTHORS: Aimal Nangyalai Shah & Alex Laurin
+USER INSTRUCTIONS:
 
 Important things to note!!!!!
 
