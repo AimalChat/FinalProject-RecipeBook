@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class HotRecipe here.
+ * A special recipe where cook/bake/ grill time is necessary.
+ * Both time and kind of heat are validated by the class.
  *
  * @author Aimal
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class HotRecipe extends Recipe
 {
@@ -23,16 +24,18 @@ public class HotRecipe extends Recipe
     {
     }
     
+    /**
+    * Constructor with an author.
+    */
     public HotRecipe(String recipeAuthor)
     {
         super(recipeAuthor);
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Set bake and Cook time
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  int heatTemp & String tempType
      */
     public void setCookOrBakeTime(int heatTemp, String tempatureType)
     {   
@@ -96,7 +99,14 @@ public class HotRecipe extends Recipe
                 break;
         }
     }
-
+    
+    /**
+     * Validate the heat temperature and tempature type receieved.
+     * 
+     * @param  int aHeatTemp & String validTemparatrueType
+     * @return boolean valid, true if both heat and type are in the list
+     *                        false if one is not in the accepted types or invalid.
+     */
     public boolean validateHeat(int aHeatTemp, String validTempatureType)
     {
         boolean valid = true;
@@ -136,11 +146,19 @@ public class HotRecipe extends Recipe
         return valid;
     }
 
+    /**
+     * Return the temperature.
+     * @return int heatTemp
+     */
     public int getHeat()
     {
         return heatTemp;
     }
 
+    /**
+     * Return the temperature type
+     * @return String temparatureType
+     */
     public String getTempatureType()
     {
         return tempatureType;

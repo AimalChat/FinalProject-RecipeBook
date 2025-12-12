@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class RecipeSteps here.
+ * A simple String meant to represent a step.
  *
  * @author Alex
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class RecipeStep
 {
@@ -19,11 +19,21 @@ public class RecipeStep
         this.step = step;
     }
     
+    /**
+     * Set the step of the recipe step.
+     * 
+     * @param String step
+     */
     public void setStep(String step)
     {
         this.step = step;
     }
 
+    /**
+     * Return the step of the recipe step.
+     * 
+     * @return String step
+     */
     public String getStep()
     {
         return step;

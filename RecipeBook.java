@@ -3,10 +3,15 @@ import java.util.HashMap;
 import java.util.Arrays;
 
 /**
- * Write a description of class RecipeBook here.
+ * This class is a naive and incomplete representation of a paperprint
+ * recipe book, where editing and creating your own recipes is possible 
+ * all while having base recipes inside. It is the main menu of sorts,
+ * where all interactions with users takes places and computes.
+ * No recipes made are stored externally, meaning that they are only created
+ * by instance of a Recipe Book.
  *
  * @author Alex
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class RecipeBook
 {
@@ -25,6 +30,8 @@ public class RecipeBook
 
     /**
      * Constructor for objects of class RecipeBook
+     * 
+     * @param String name
      */
     public RecipeBook (String name)
     {
@@ -50,6 +57,8 @@ public class RecipeBook
     
     /**
      * Allows other form of command menus to use the RecipeBook
+     * 
+     * @param String[] args
      */
     public static void main(String[] args)
     {
@@ -114,12 +123,13 @@ public class RecipeBook
             switch(commandWord)
             {
                 case ADD -> add(command);
-                case EDIT -> edit(command);
-                case REMOVE -> remove(command);
                 case UNKNOWN -> System.out.println("Invalid Command");
                 case HELP -> help();
                 case EXIT -> wantToQuit = exit(command);
                 case CONFIRM -> confirm();
+                //EDIT AND REMOVE ARE NOT COMPLETED.
+                case EDIT -> edit(command);
+                case REMOVE -> remove(command);
             }
         }
         return wantToQuit;
@@ -147,7 +157,7 @@ public class RecipeBook
             System.out.println("Create: create a new recipe." + "\n");
             System.out.println("Select: view inside a recipe of your choice." + "\n");
             System.out.println("Exit: exit the recipe book" + "\n");
-            System.out.println("Favorites: see all of the recipes that you added"+
+            System.out.println("favorites: see all of the recipes that you added"+
             "\n" + "inside the favorites list." + "\n");
             System.out.println("Help: shows all possible commands that you can use." + "\n");
             System.out.println("For more help, simply write the command." + "\n");
@@ -220,23 +230,9 @@ public class RecipeBook
     }
     
     /**
-     * Removes something from the recipe class currently being made if possible.
-     */
-    public void remove(Command command)
-    {
-        
-    }
-    
-    /**
-     * Modify something from the recipe class currently being made if possible.
-     */
-    public void edit(Command command)
-    {
-        
-    }
-    
-    /**
      * Add something to the recipe class currently being made if possible.
+     * 
+     * @param Command command
      */
     public void add(Command command)
     {
@@ -348,6 +344,9 @@ public class RecipeBook
     /**
      * Shows a selected detail of the recipe.
      * Details that can be shown include comments, steps, ingredients, details and recipe.
+     * 
+     * @param Command command
+     * 
      * @exception prints all words that can follow view if it doesn't have a second word.
      */
     public void view(Command command)
@@ -472,11 +471,11 @@ public class RecipeBook
         System.out.println("========Favorites");
         
         if(!favorites.isEmpty()){
-            int index2 = 1;
             for(Recipe recipe : favorites)
             {
-                listOfFavorites.put(String.valueOf(index2), recipe);
-                index2++;
+                int index = 1;
+                listOfFavorites.put(String.valueOf(index), recipe);
+                index++;
             }
 
             for(String index : listOfFavorites.keySet())
@@ -490,8 +489,10 @@ public class RecipeBook
     }
 
     /**
-     * Imput a int value to receive the amount of the current ingredients
+     * Input a int value to receive the amount of the current ingredients
      * required to complete the current recipe.
+     * 
+     * @param Command command
      * @error Will send an error if the int value is invalid.
      */
     public void convert(Command command)
@@ -519,7 +520,7 @@ public class RecipeBook
             System.out.println("-----Ingredient List for " + desiredYield + " people.-----");
             for(RecipeIngredient ingredient : currentRecipe.getConvertedIngredients(desiredYield))
             {
-                System.out.println(ingredient.getRecipeIngredient());
+                System.out.println(ingredient.toString());
             }
         }
     }
@@ -536,6 +537,8 @@ public class RecipeBook
 
     /**
      * Ends the program and stores all values inside an object.
+     * 
+     * @param Command command
      */
     private boolean exit(Command command)
     {
@@ -604,6 +607,7 @@ public class RecipeBook
     /**
      * View information about a recipe if the user is in 
      * the Main Menu or in Favorites and sends the user to recipe_view.
+     * @param Command command
      * @exception Prints a message explaining how the commands work if the user doesn't
      * write anything after select.
      * @error Prints an error message if the user selects something that the RecipeBook
@@ -669,5 +673,25 @@ public class RecipeBook
                 System.out.println("Invalid index, please enter a valid number to select.");
             }
         }
+    }
+    
+    //WIP, incomplete methods!
+    /**
+     * Removes something from the recipe class currently being made if possible.
+     * 
+     * @param Command command
+     */
+    public void remove(Command command)
+    {
+        
+    }
+    
+    /**
+     * Modify something from the recipe class currently being made if possible.
+     * @param Command command
+     */
+    public void edit(Command command)
+    {
+        
     }
 }

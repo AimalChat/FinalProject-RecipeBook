@@ -1,10 +1,11 @@
 import java.util.HashMap;
 
 /**
- * Write a description of class CommandWords here.
+ * Initializing the Enum class CommandWord by associating
+ * each with a string.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author heavily inspired from BlueJ's world of zuul project, Aimal
+ * @version 12/11/2025
  */
 public class CommandWords
 {

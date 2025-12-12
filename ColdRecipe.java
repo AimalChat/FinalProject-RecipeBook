@@ -19,10 +19,10 @@ public class ColdRecipe extends Recipe
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Set the chill time of the recipe.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  int chillTime
+     * 
      */
     public void setChillTime(int chillTime)
     {
@@ -36,6 +36,10 @@ public class ColdRecipe extends Recipe
         }
     }
     
+    /**
+     * Return the chill time.
+     * @return int chillTime
+     */
     public int getChillTime()
     {
         return chillTime;

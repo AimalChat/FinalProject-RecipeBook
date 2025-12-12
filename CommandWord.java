@@ -1,9 +1,9 @@
 
 /**
- * Enumeration class CommandWord - write a description of the enum class here
+ * Enumeration class CommandWord - Possible Commands the User can input.
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Aimal, inpired by BlueJ's world of zuul project
+ * @version 12/11/2025
  */
 public enum CommandWord
 {

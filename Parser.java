@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 /**
- * Write a description of class Parser here.
+ * Retrieves and sends user input.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Heavily insprired from BlueJ's world of zuul project, Aimal
+ * @version 12/11/2025
  */
 public class Parser
 {
@@ -51,6 +51,9 @@ public class Parser
         return new Command(commands.getCommandWord(word1), word2);
     }
     
+    /**
+     * @return An Array from the user's input.
+     */
     public String[] getIngredient()
     {
         // The full input line.
@@ -64,6 +67,9 @@ public class Parser
         return ingredient;
     }
     
+    /**
+     * @return An Array from the user's input.
+     */
     public String[] getComment()
     {
         // The full input line.
@@ -78,6 +84,9 @@ public class Parser
         return ratingAndComment;
     }
     
+    /**
+     * @return An Array from the user's input.
+     */
     public String[] getRecipeName()
     {
         // The full input line.
@@ -91,6 +100,9 @@ public class Parser
         return recipeName;
     }
     
+    /**
+     * @return A String from the user's input.
+     */
     public String getLine()
     {
         // The full input line.
@@ -102,6 +114,9 @@ public class Parser
         return inputLine;
     }
     
+    /**
+     * @return A String from the user's input.
+     */
     public static String getName()
     {
         Scanner reader = new Scanner(System.in);

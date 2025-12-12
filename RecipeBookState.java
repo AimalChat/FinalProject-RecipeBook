@@ -1,9 +1,9 @@
 
 /**
- * Enumeration class RecipeBookState - write a description of the enum class here
+ * Enumeration class RecipeBookState - The states in which the recipe book can be in.
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Aimal
+ * @version 12/11/2025
  */
 public enum RecipeBookState
 {

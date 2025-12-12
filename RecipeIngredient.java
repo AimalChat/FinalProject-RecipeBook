@@ -2,10 +2,12 @@ import java.util.HashMap;
 import java.text.DecimalFormat;
 
 /**
- * Write a description of class RecipeIngredients here.
+ * A representation of a ingredient needed in a recipe.
+ * It is to be storred in a recipe object and have its
+ * contents printed for the user to see.
  *
  * @author Alex
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class RecipeIngredient
 {
@@ -17,6 +19,10 @@ public class RecipeIngredient
 
     /**
      * Constructor for objects of class RecipeIngredients
+     * 
+     * @param double amount, the qty.
+     * @param String measurement
+     * @param String ingredient
      */
     public RecipeIngredient(double amount,String measurement, String ingredient)
     {
@@ -42,6 +48,11 @@ public class RecipeIngredient
         }
     }
 
+    /**
+     * Set the measurement of the recipe Ingredient
+     * 
+     * @param String measurement
+     */
     public void setMeasurement(String measurement)
     {
         if(validMeasurement(measurement) == true)
@@ -50,11 +61,21 @@ public class RecipeIngredient
         }
     }
 
+    /**
+     * Set the ingredient of the recipe Ingredient
+     * 
+     * @param String ingredient
+     */
     public void setIngredient(String ingredient)
     {
         this.ingredient = ingredient;
     }
 
+    /**
+     * Set the amount of the recipe Ingredient
+     * 
+     * @param double amount
+     */
     public void setAmount(double amount)
     {
         if(amount > 0)
@@ -70,6 +91,13 @@ public class RecipeIngredient
         }
     }
 
+    /**
+     * Validate the measurement receieved.
+     * 
+     * @param String measurement
+     * @return boolean valid, true if measurement is in the list
+     *                        false if not in the list.
+     */
     public boolean validMeasurement(String aMeasurement)
     {
         boolean valid;
@@ -103,6 +131,11 @@ public class RecipeIngredient
         return valid;
     }
 
+    /**
+     * Formats the measurement of the recipe Ingredient
+     * 
+     * @return formated measurement
+     */
     public String formattedMeasurement() 
     {
         if(amount == 1 || amount < 1)
@@ -123,21 +156,41 @@ public class RecipeIngredient
         }
     }
 
-    public String getRecipeIngredient()
+    /**
+     * returns the String form of the recipe Ingredient
+     * 
+     * @return String recipeIngredient, as a string.
+     */
+    public String toString()
     {
         return amount + " " + formattedMeasurement() + " " + ingredient;
     }
 
+    /**
+     * Return the ingredient of the recipe Ingredient
+     * 
+     * @return String ingredient
+     */
     public String getIngredient()
     {
         return ingredient;
     }
 
+    /**
+     * Return the measurement of the recipe Ingredient
+     * 
+     * @return String measurement
+     */
     public String getMeasurement()
     {
         return measurement;
     }
 
+    /**
+     * Return the amount of the recipe Ingredient
+     * 
+     * @return double amount
+     */
     public double getAmount()
     {
         return amount;

@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class Command here.
+ * Creates an instance of a Command from user input.
  *
  * @author Michael Kölling and David J. Barnes
  * @version 7.2
@@ -14,8 +14,9 @@ public class Command
     /**
      * Create a command object. First and second words must be supplied, but
      * the second may be null.
+     * 
      * @param commandWord The CommandWord. UNKNOWN if the command word
-     *                  was not recognised.
+     *                    was not recognised.
      * @param secondWord The second word of the command. May be null.
      */
     public Command(CommandWord commandWord, String secondWord)

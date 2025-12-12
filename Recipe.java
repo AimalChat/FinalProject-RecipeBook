@@ -3,10 +3,12 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 
 /**
- * Write a description of class Recipe here.
+ * A recipe to be stored in the recipe book's library of recipes. It is a collection of
+ * steps and ingredients. You can comment on the recipe and affect its average rating
+ * while leaving your opinion.
  *
  * @author Aimal
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class Recipe
 {
@@ -275,7 +277,7 @@ public class Recipe
         "\n");
         for(RecipeIngredient ingredient : recipeIngredients.values())
         {
-            System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.getRecipeIngredient(),maxWidth));
+            System.out.println(counter + ". " + AutoWrapper.wrapTextByWidth(ingredient.toString(),maxWidth));
             counter++;
         }
     }
@@ -306,6 +308,7 @@ public class Recipe
     
     /**
      * Adds a recipe step to recipeStep.
+     * @param RecipeStep step
      */
     public void addRecipeStep(RecipeStep step)
     {
@@ -324,7 +327,7 @@ public class Recipe
             System.out.println(
             "Author: " + comment.getAuthor() + " rates this recipe at " 
             + comment.getRating() + " stars."
-            + "\n" + "Time Posted: " + comment.getTimeString() + "\n" +
+            + "\n" + "Time Posted: " + comment.timeToString() + "\n" +
             AutoWrapper.wrapTextByWidth(comment.getComment(), maxWidth) + "\n");
         }
     }

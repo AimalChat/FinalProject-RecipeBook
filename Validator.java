@@ -1,10 +1,11 @@
 import java.util.Arrays;
 
 /**
- * To validate input from user.
+ * To validate input from user and return the desired Object the user wishes
+ * to create in their own Recipe instance.
  *
  * @author Aimal
- * @version (a version number or a date)
+ * @version 12/11/2025
  */
 public class Validator
 {
@@ -18,6 +19,10 @@ public class Validator
         // initialise instance variables
     }
     
+    /**
+     * Retrieves user input and makes sure that the String given is not empty before
+     * sending it back to recipeBook
+     */
     public String validateRecipeName(String[] recipeName)
     {
         StringBuilder sb = new StringBuilder();
@@ -38,10 +43,14 @@ public class Validator
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Retrieves user input from Parser and checks if the input from user is valid
+     * to create a recipe ingredient.
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  ingredient An array that may or may not hold the necessary
+     *         information to create a RecipeIngredient object.
+     *         
+     * @return    valid RecipeIngredient if given input has all valid info.
+     *            ELSE, Null
      */
     public RecipeIngredient validateIngredient(String[] ingredient)
     {   
@@ -96,6 +105,15 @@ public class Validator
         }
     }
     
+    /**
+     * Retrieves user input from Parser and checks if the input from user is valid
+     * to create a recipe step.
+     *
+     * @param  input: A string that represents a step.
+     *         
+     * @return    valid RecipeStep if given input is not empty.
+     *            ELSE, Null
+     */
     public RecipeStep validateStep(String input)
     {
         if(input.equals(""))
@@ -108,6 +126,15 @@ public class Validator
         }
     }
     
+    /**
+     * Retrieves user input from Parser and checks if the input from user is valid
+     * to set a recipe's type.
+     *
+     * @param  input: A string that represents 1 of the 3 types.
+     *         
+     * @return    input if given input is one of the types allowed.
+     *            ELSE, Null
+     */
     public String validateType(String input)
     {
         if(input.equals("hot") || input.equals("cold") || input.equals("regular"))
@@ -120,6 +147,15 @@ public class Validator
         }
     }
     
+    /**
+     * Retrieves user input from Parser and checks if the input from user is valid
+     * to set a recipe's serving amount.
+     *
+     * @param  input: A string that represents the servings given by a recipe.
+     *         
+     * @return    int if given input is a valid number.
+     *            ELSE, 0
+     */
     public int validateServingAmount(String servingAmt)
     {
         int servings;

@@ -79,9 +79,9 @@ public class RecipeIngredientTest
     @Test
     public void testToStringMethods()
     {
-        assertEquals("0.5 cups flour", recipeIn1.getRecipeIngredient());
+        assertEquals("0.5 cups flour", recipeIn1.toString());
         RecipeIngredient recipeIn2 = new RecipeIngredient(3,"units","eggs");
-        assertEquals("3 units eggs", recipeIn2.getRecipeIngredient());
+        assertEquals("3 units eggs", recipeIn2.toString());
     }
 
     @Test
